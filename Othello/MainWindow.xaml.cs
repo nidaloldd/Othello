@@ -24,7 +24,7 @@ namespace Othello
         {
             InitializeComponent();
 
-            Model.ModelMain.AIN();
+            Model.ModelMain.main();
            
         }
     }

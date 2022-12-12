@@ -12,13 +12,20 @@ namespace Othello.Model
         Color color { get; set; }
         public bool isPlayerTurn = false;
 
-   
+        public Color getColor(){
+            return color;
+        }
+        public void setColor(Color color){
+            this.color = color;
+        }
+
         public Player(PlayerType playerType, String name) {
             this.playerType = playerType;
             this.name = name;
         }
 
-        public void MakeMove(Field field) { 
+        public void MakeMove(Field field) {
+            Console.WriteLine(name + " makeMove");
              // TODO
         }
     }

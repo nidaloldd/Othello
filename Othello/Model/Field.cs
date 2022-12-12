@@ -7,50 +7,37 @@ namespace Othello.Model
     class Field
     {
         Color color;
-        int posX,posY;
-        public Field()
-        {
-            this.color = Color.Empty;
-            this.posX = -1;
-            this.posY = -1;
-        }
-        public Field(Color color,int posX,int posY) {
+        Position position;
+
+        public Field(Position position , Color color) {
+            this.position = position;
             this.color = color;
-            this.posX = posX;
-            this.posY = posY;
         }
 
-        public void Reverse() { 
-         // ToDO
+        public void ReverseColor(){
+            if (this.color == Color.White) { this.color = Color.Black; }
+            else if (this.color == Color.Black) { this.color = Color.White; }
         }
-        public Color GetColor() {
+        public Color GetReverseColor()
+        {
+            if (this.color == Color.White) { return Color.Black; }
+            else if (this.color == Color.Black) { return Color.White; }
+            else return Color.Empty;
+        }
+        public Color GetColor(){
             return color;
         }
-        public Field[] getNeighbors()
+        public void SetColor(Color color)
         {
-            // ToDO
-            return null;
+            this.color = color;
         }
-        public void getUp()
-        {
-            // ToDO
-        }
-        public void getDown()
-        {
-            // ToDO
-        }
-        public void getLeft()
-        {
-            // ToDO
-        }
-        public void getRight()
-        {
-            // ToDO
-        }
+
+
+
     }
     public enum Color { 
        Empty,
        Black,
-       White
+       White,
     }
 }
