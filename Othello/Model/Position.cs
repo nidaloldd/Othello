@@ -30,7 +30,10 @@ namespace Othello.Model
             this.X = X;
             this.Y = Y;
         }
-
+        
+        /**
+         * An Array that contains all possible directions
+         */
         public static Position[] Directions = new Position[8] { 
             new Position().Up(),
             new Position().DiagonalUpRight(),
@@ -42,18 +45,7 @@ namespace Othello.Model
             new Position().DiagonalUpLeft()
 
         };
-
-        /*
-        public static Position Up = new Position(-1, 0);
-        public static Position DiagonalUpRight = new Position(-1, 1);
-        public static Position Right = new Position(1, 0);
-        public static Position DiagonalDownRight = new Position(1, 1);
-        public static Position Down = new Position(1, 0);
-        public static Position DiagonalDownLeft = new Position(1, -1);
-        public static Position Left = new Position(-1, 0);
-        public static Position DiagonalUpLeft = new Position(-1, -1);
-        */
-        
+    
         public Position Up()
         {
             Y -= 1;
@@ -98,13 +90,10 @@ namespace Othello.Model
             X -= 1;
             return this;
         }
-        public Position opposite() {
-
-            Y *= -1;
-            X *= -1;
-            return this;
-        }
         
+        /**
+         *  returns the Position as a String
+         */
         public String write() {
             return ("X :" + getX() + " Y :"+getY());
         }

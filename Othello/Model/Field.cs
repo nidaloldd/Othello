@@ -14,10 +14,21 @@ namespace Othello.Model
             this.color = color;
         }
 
+        /**
+         * Set the Color property to the opposite Color
+         * Black->White
+         * White->Black
+         * In case of Empty Color no change occurs
+        */
         public void ReverseColor(){
             if (this.color == Color.White) { this.color = Color.Black; }
             else if (this.color == Color.Black) { this.color = Color.White; }
         }
+
+        /*
+         * returns the opposite Color
+         * In case of Empty returns Empty Color
+         */
         public Color GetReverseColor()
         {
             if (this.color == Color.White) { return Color.Black; }

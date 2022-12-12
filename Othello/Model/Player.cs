@@ -24,10 +24,6 @@ namespace Othello.Model
             this.name = name;
         }
 
-        public void MakeMove(Field field) {
-            Console.WriteLine(name + " makeMove");
-             // TODO
-        }
     }
 
     public enum PlayerType { 
