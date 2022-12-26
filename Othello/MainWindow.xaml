@@ -217,56 +217,64 @@
                 Grid.Column="0"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="0"
                 Grid.Column="1"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="0"
                 Grid.Column="2"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="0"
                 Grid.Column="3"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="0"
                 Grid.Column="4"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="0"
                 Grid.Column="5"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="0"
                 Grid.Column="6"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="0"
                 Grid.Column="7"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <!--  2nd row of ellipses  -->
             <Ellipse
@@ -274,56 +282,64 @@
                 Grid.Column="0"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="1"
                 Grid.Column="1"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="1"
                 Grid.Column="2"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="1"
                 Grid.Column="3"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="1"
                 Grid.Column="4"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="1"
                 Grid.Column="5"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="1"
                 Grid.Column="6"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="1"
                 Grid.Column="7"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <!--  3rd row of ellipses  -->
             <Ellipse
@@ -331,49 +347,56 @@
                 Grid.Column="0"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="2"
                 Grid.Column="1"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="2"
                 Grid.Column="2"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="2"
                 Grid.Column="4"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="2"
                 Grid.Column="5"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="2"
                 Grid.Column="6"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="2"
                 Grid.Column="7"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <!--  4th row of ellipses  -->
             <Ellipse
@@ -381,35 +404,40 @@
                 Grid.Column="0"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="3"
                 Grid.Column="1"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="3"
                 Grid.Column="5"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="3"
                 Grid.Column="6"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="3"
                 Grid.Column="7"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <!--  5th row of ellipses  -->
             <Ellipse
@@ -417,35 +445,40 @@
                 Grid.Column="0"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="4"
                 Grid.Column="1"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="4"
                 Grid.Column="2"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="4"
                 Grid.Column="6"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="4"
                 Grid.Column="7"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <!--  6th row of ellipses  -->
             <Ellipse
@@ -453,49 +486,56 @@
                 Grid.Column="0"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="5"
                 Grid.Column="1"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="5"
                 Grid.Column="2"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="5"
                 Grid.Column="3"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="5"
                 Grid.Column="5"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="5"
                 Grid.Column="6"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="5"
                 Grid.Column="7"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <!--  7th row of ellipses  -->
             <Ellipse
@@ -503,56 +543,64 @@
                 Grid.Column="0"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="6"
                 Grid.Column="1"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="6"
                 Grid.Column="2"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="6"
                 Grid.Column="3"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="6"
                 Grid.Column="4"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="6"
                 Grid.Column="5"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="6"
                 Grid.Column="6"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="6"
                 Grid.Column="7"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <!--  8th row of ellipses  -->
             <Ellipse
@@ -560,56 +608,64 @@
                 Grid.Column="0"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="7"
                 Grid.Column="1"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="7"
                 Grid.Column="2"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="7"
                 Grid.Column="3"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="7"
                 Grid.Column="4"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="7"
                 Grid.Column="5"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="7"
                 Grid.Column="6"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
             <Ellipse
                 Grid.Row="7"
                 Grid.Column="7"
                 Width="50"
                 Height="50"
-                Stroke="Black"
+                Fill="{Binding FillColor}" 
+                Stroke="{Binding StrokeColor}"
                 StrokeThickness="1" />
 
             <!--  default(starting position) ellipses  -->
@@ -657,6 +713,7 @@
                 Grid.Column="3"
                 Width="50"
                 Height="50"
+                Fill="#0000"
                 Stroke="Black"
                 StrokeThickness="1" />
             <Ellipse
@@ -664,6 +721,7 @@
                 Grid.Column="2"
                 Width="50"
                 Height="50"
+                Fill="#0000"
                 Stroke="Black"
                 StrokeThickness="1" />
             <Ellipse
@@ -671,6 +729,7 @@
                 Grid.Column="4"
                 Width="50"
                 Height="50"
+                Fill="#0000"
                 Stroke="Black"
                 StrokeThickness="1" />
             <Ellipse
@@ -678,6 +737,7 @@
                 Grid.Column="5"
                 Width="50"
                 Height="50"
+                Fill="#0000"
                 Stroke="Black"
                 StrokeThickness="1" />
         </Grid>

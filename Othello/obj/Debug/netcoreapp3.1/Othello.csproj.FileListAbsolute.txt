@@ -28,7 +28,6 @@ C:\Users\Péter\Desktop\DE\ni C#\othello\Othello\obj\Debug\netcoreapp3.1\Othello
 C:\Users\Péter\Desktop\DE\ni C#\othello\Othello\obj\Debug\netcoreapp3.1\MainWindow.g.cs
 C:\Users\Péter\Desktop\DE\ni C#\othello\Othello\obj\Debug\netcoreapp3.1\App.g.cs
 C:\Users\Péter\Desktop\DE\ni C#\othello\Othello\obj\Debug\netcoreapp3.1\Othello_MarkupCompile.cache
-C:\Users\Péter\Desktop\DE\ni C#\othello\Othello\obj\Debug\netcoreapp3.1\Othello_MarkupCompile.lref
 C:\Users\Péter\Desktop\DE\ni C#\othello\Othello\obj\Debug\netcoreapp3.1\MainWindow.baml
 C:\Users\Péter\Desktop\DE\ni C#\othello\Othello\obj\Debug\netcoreapp3.1\Othello.g.resources
 C:\Users\Péter\Desktop\DE\ni C#\othello\Othello\obj\Debug\netcoreapp3.1\Othello.GeneratedMSBuildEditorConfig.editorconfig
