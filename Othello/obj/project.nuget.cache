@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "FrLI/7c3zk3ECP7D4QFAJC3cUEPdCwuB40m1JnJJdV3yxbuf01ZsoB+fUWZa6ICTXAl7T6sYzpYQg0d1n5K7tg==",
+  "dgSpecHash": "m7WpOegdFAh98YkHEQ02vdS4Rgw4V9Hd7XOD1o/hNzf97YnoFYHmZigANO5ypJsi4stf8KX+pMYhPxuMk+nFHA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\minde\\OneDrive\\Asztali gép\\C#\\Othello\\Othello\\Othello.csproj",
+  "projectFilePath": "C:\\Users\\Péter\\Desktop\\DE\\ni C#\\othello\\Othello\\Othello.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\minde\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.23\\microsoft.netcore.app.host.win-x64.3.1.23.nupkg.sha512"
+    "C:\\Users\\Péter\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.22\\microsoft.netcore.app.host.win-x64.3.1.22.nupkg.sha512",
+    "C:\\Users\\Péter\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
+    "C:\\Users\\Péter\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\3.1.0\\microsoft.windowsdesktop.app.ref.3.1.0.nupkg.sha512",
+    "C:\\Users\\Péter\\.nuget\\packages\\microsoft.netcore.app.ref\\3.1.0\\microsoft.netcore.app.ref.3.1.0.nupkg.sha512"
   ],
   "logs": []
 }

@@ -1,12 +1,686 @@
-﻿<Window x:Class="Othello.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Othello"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+﻿<Window
+    x:Class="Othello.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Othello"
+    Background="Black"
+    ResizeMode="NoResize"
+    SizeToContent="WidthAndHeight"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <StackPanel Background="Black">
+        <StackPanel Background="#303030" Orientation="Horizontal">
+            <Grid Height="200" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="145" />
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="145" />
+                    <ColumnDefinition Width="5" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+                <!--  "scoreboard" and turn indicator  -->
+                <Ellipse
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Width="75"
+                    Height="75"
+                    HorizontalAlignment="Right"
+                    Fill="Black" />
+                <TextBlock
+                    x:Name="tbScore1"
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Margin="15,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    FontFamily="Arial Black"
+                    FontSize="25"
+                    Foreground="White"
+                    Text="0"
+                    TextWrapping="Wrap" />
+                <TextBlock
+                    x:Name="tbScore2"
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Margin="0,0,15,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    FontFamily="Arial Black"
+                    FontSize="25"
+                    Foreground="White"
+                    Text="0"
+                    TextWrapping="Wrap" />
+                <Ellipse
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    Width="75"
+                    Height="75"
+                    HorizontalAlignment="Left"
+                    Fill="White" />
+                <Border
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    Background="#34a8eb"
+                    BorderBrush="Black"
+                    BorderThickness="2"
+                    CornerRadius="20">
+                    <TextBlock
+                        x:Name="tbTurnIndicator"
+                        Width="190"
+                        Height="35"
+                        Padding="3"
+                        FontSize="18"
+                        FontWeight="Bold"
+                        Foreground="White"
+                        Text="Player 1's turn"
+                        TextAlignment="Center" />
+                </Border>
+            </Grid>
+        </StackPanel>
 
-    </Grid>
+        <!--  playable field  -->
+        <Grid
+            x:Name="Field"
+            Width="500"
+            Height="500"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            Background="#009067"
+            ShowGridLines="False">
+
+            <!--  styling for the grid lines  -->
+            <Grid.Resources>
+                <Style x:Key="lineStyle" TargetType="Line">
+                    <Setter Property="Stroke" Value="Black" />
+                    <Setter Property="Stretch" Value="Fill" />
+                    <Setter Property="Grid.ZIndex" Value="100" />
+                </Style>
+                <Style
+                    x:Key="horizontalLineStyle"
+                    BasedOn="{StaticResource lineStyle}"
+                    TargetType="Line">
+                    <Setter Property="X2" Value="1" />
+                    <Setter Property="X1" Value="0" />
+                    <Setter Property="VerticalAlignment" Value="Bottom" />
+                    <Setter Property="Grid.ColumnSpan" Value="{Binding Path=ColumnDefinitions.Count, RelativeSource={RelativeSource AncestorType=Grid}}" />
+                    <Setter Property="Stroke" Value="Black" />
+                    <Setter Property="StrokeThickness" Value="1" />
+                </Style>
+                <Style
+                    x:Key="verticalLineStyle"
+                    BasedOn="{StaticResource lineStyle}"
+                    TargetType="Line">
+                    <Setter Property="Y2" Value="1" />
+                    <Setter Property="HorizontalAlignment" Value="Right" />
+                    <Setter Property="Grid.RowSpan" Value="{Binding Path=RowDefinitions.Count, RelativeSource={RelativeSource AncestorType=Grid}}" />
+                    <Setter Property="Stroke" Value="Black" />
+                    <Setter Property="StrokeThickness" Value="1" />
+                </Style>
+            </Grid.Resources>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Border
+                Grid.RowSpan="8"
+                Grid.ColumnSpan="8"
+                BorderBrush="Black"
+                BorderThickness="1" />
+            <!--  4 dots on the grid lines  -->
+            <Ellipse
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Width="10"
+                Height="10"
+                Margin="0,0,58,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Fill="Black" />
+            <Ellipse
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Grid.Column="5"
+                Grid.ColumnSpan="2"
+                Width="10"
+                Height="10"
+                Margin="0,0,58,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Fill="Black" />
+            <Ellipse
+                Grid.Row="5"
+                Grid.RowSpan="2"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Width="10"
+                Height="10"
+                Margin="0,0,58,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Fill="Black" />
+            <Ellipse
+                Grid.Row="5"
+                Grid.RowSpan="2"
+                Grid.Column="5"
+                Grid.ColumnSpan="2"
+                Width="10"
+                Height="10"
+                Margin="0,0,58,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Fill="Black" />
+            <!--  grid lines  -->
+            <Line Grid.Row="0" Style="{StaticResource horizontalLineStyle}" />
+            <Line Grid.Row="1" Style="{StaticResource horizontalLineStyle}" />
+            <Line Grid.Row="2" Style="{StaticResource horizontalLineStyle}" />
+            <Line Grid.Row="3" Style="{StaticResource horizontalLineStyle}" />
+            <Line Grid.Row="4" Style="{StaticResource horizontalLineStyle}" />
+            <Line Grid.Row="5" Style="{StaticResource horizontalLineStyle}" />
+            <Line Grid.Row="6" Style="{StaticResource horizontalLineStyle}" />
+            <Line Grid.Column="0" Style="{StaticResource verticalLineStyle}" />
+            <Line Grid.Column="1" Style="{StaticResource verticalLineStyle}" />
+            <Line Grid.Column="2" Style="{StaticResource verticalLineStyle}" />
+            <Line Grid.Column="3" Style="{StaticResource verticalLineStyle}" />
+            <Line Grid.Column="4" Style="{StaticResource verticalLineStyle}" />
+            <Line Grid.Column="5" Style="{StaticResource verticalLineStyle}" />
+            <Line Grid.Column="6" Style="{StaticResource verticalLineStyle}" />
+            <!--  1st row of ellipses  -->
+            <Ellipse
+                Grid.Row="0"
+                Grid.Column="0"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="0"
+                Grid.Column="1"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="0"
+                Grid.Column="2"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="0"
+                Grid.Column="3"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="0"
+                Grid.Column="4"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="0"
+                Grid.Column="5"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="0"
+                Grid.Column="6"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="0"
+                Grid.Column="7"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <!--  2nd row of ellipses  -->
+            <Ellipse
+                Grid.Row="1"
+                Grid.Column="0"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="1"
+                Grid.Column="1"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="1"
+                Grid.Column="2"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="1"
+                Grid.Column="3"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="1"
+                Grid.Column="4"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="1"
+                Grid.Column="5"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="1"
+                Grid.Column="6"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="1"
+                Grid.Column="7"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <!--  3rd row of ellipses  -->
+            <Ellipse
+                Grid.Row="2"
+                Grid.Column="0"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="2"
+                Grid.Column="1"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="2"
+                Grid.Column="2"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="2"
+                Grid.Column="4"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="2"
+                Grid.Column="5"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="2"
+                Grid.Column="6"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="2"
+                Grid.Column="7"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <!--  4th row of ellipses  -->
+            <Ellipse
+                Grid.Row="3"
+                Grid.Column="0"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="3"
+                Grid.Column="1"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="3"
+                Grid.Column="5"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="3"
+                Grid.Column="6"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="3"
+                Grid.Column="7"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <!--  5th row of ellipses  -->
+            <Ellipse
+                Grid.Row="4"
+                Grid.Column="0"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="4"
+                Grid.Column="1"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="4"
+                Grid.Column="2"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="4"
+                Grid.Column="6"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="4"
+                Grid.Column="7"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <!--  6th row of ellipses  -->
+            <Ellipse
+                Grid.Row="5"
+                Grid.Column="0"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="5"
+                Grid.Column="1"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="5"
+                Grid.Column="2"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="5"
+                Grid.Column="3"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="5"
+                Grid.Column="5"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="5"
+                Grid.Column="6"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="5"
+                Grid.Column="7"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <!--  7th row of ellipses  -->
+            <Ellipse
+                Grid.Row="6"
+                Grid.Column="0"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="6"
+                Grid.Column="1"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="6"
+                Grid.Column="2"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="6"
+                Grid.Column="3"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="6"
+                Grid.Column="4"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="6"
+                Grid.Column="5"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="6"
+                Grid.Column="6"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="6"
+                Grid.Column="7"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <!--  8th row of ellipses  -->
+            <Ellipse
+                Grid.Row="7"
+                Grid.Column="0"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="7"
+                Grid.Column="1"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="7"
+                Grid.Column="2"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="7"
+                Grid.Column="3"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="7"
+                Grid.Column="4"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="7"
+                Grid.Column="5"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="7"
+                Grid.Column="6"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="7"
+                Grid.Column="7"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+
+            <!--  default(starting position) ellipses  -->
+            <Ellipse
+                Grid.Row="3"
+                Grid.Column="3"
+                Width="50"
+                Height="50"
+                Fill="White"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="4"
+                Grid.Column="4"
+                Width="50"
+                Height="50"
+                Fill="White"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="3"
+                Grid.Column="4"
+                Width="50"
+                Height="50"
+                Fill="Black"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="4"
+                Grid.Column="3"
+                Width="50"
+                Height="50"
+                Fill="Black"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="3"
+                Grid.Column="2"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="2"
+                Grid.Column="3"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="3"
+                Grid.Column="2"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="5"
+                Grid.Column="4"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+            <Ellipse
+                Grid.Row="4"
+                Grid.Column="5"
+                Width="50"
+                Height="50"
+                Stroke="Black"
+                StrokeThickness="1" />
+        </Grid>
+    </StackPanel>
+
 </Window>

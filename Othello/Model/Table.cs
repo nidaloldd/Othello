@@ -8,8 +8,8 @@ namespace Othello.Model
     class Table
     {
         Player player1, player2;
-        Player activPlayer;
-        private const int with = 8;
+        Player activePlayer;
+        private const int width = 8;
         private const int height = 8;
 
         private Field[,] fields = new Field[8, 8];
@@ -26,7 +26,7 @@ namespace Othello.Model
          *  returns if the given position is a valid position 
          */
         public bool isPositionValid(Position position) {
-            if (position.getX() > -1 && position.getX() < with &&
+            if (position.getX() > -1 && position.getX() < width &&
                 position.getY() > -1 && position.getY() < height)
             {
                 return true;
@@ -47,7 +47,7 @@ namespace Othello.Model
              * and get the possible valid moves from them
              */
             for (int i = 0; i < height; i++) {
-                for (int j = 0; j < with; j++) {
+                for (int j = 0; j < width; j++) {
                     if (fields[i, j].GetColor() == player.getColor()) {
 
                         getValiddMovesFrom(new Position( i, j));
@@ -157,12 +157,12 @@ namespace Othello.Model
             player2.setColor(Color.White);
             // set up which Player will start the game.
             // who makes the first move
-            activPlayer = player1;
+            activePlayer = player1;
 
             // Set up the fields of the Table
             for (int i = 0; i < height; i++)
             {
-                for (int j = 0; j < with; j++)
+                for (int j = 0; j < width; j++)
                 {
                     fields[j, i] = new Field(new Position(j, i), Color.Empty);
                 }
@@ -171,7 +171,7 @@ namespace Othello.Model
             fields[4, 4].SetColor(Color.White);
             fields[3, 4].SetColor(Color.Black);
             fields[4, 3].SetColor(Color.Black);
-            getValidMoves(activPlayer);
+            getValidMoves(activePlayer);
         }
 
         /**
@@ -189,29 +189,29 @@ namespace Othello.Model
             
             // throw an Error message is the given position is not a valid Move
             if (!inValidMoves(position)) {
-                Trace.WriteLine("InvalidMove From "+activPlayer.getColor()+" "+position.write());
+                Trace.WriteLine("InvalidMove From "+activePlayer.getColor()+" "+position.write());
                 return; 
             }
 
             // set the Empty Color to the activPlayers color
-            getFieldOn(position).SetColor(activPlayer.getColor());
+            getFieldOn(position).SetColor(activePlayer.getColor());
             // Reverse the Colors 
             foreach (Position p in getReversedPositions(position)) {
                 getFieldOn(p).ReverseColor();
             }
             
             switchPlayer();
-            getValidMoves(activPlayer);
+            getValidMoves(activePlayer);
             PrintTable();
         }
 
         private void switchPlayer() {
-            if (activPlayer == player1) {
-                activPlayer = player2;
+            if (activePlayer == player1) {
+                activePlayer = player2;
             }
-            else if (activPlayer == player2)
+            else if (activePlayer == player2)
             {
-                activPlayer = player1;
+                activePlayer = player1;
             }
         }
 
@@ -223,7 +223,7 @@ namespace Othello.Model
             String[,] symbols = new String[8, 8];
 
             for (int i = 0; i < height; i++){
-                for (int j = 0; j < with; j++){
+                for (int j = 0; j < width; j++){
                     switch (fields[j, i].GetColor()){
                         case Color.Black:
                             symbols[j, i] = " B ";
@@ -243,7 +243,7 @@ namespace Othello.Model
             }
             for (int i = 0; i < height; i++)
             {
-                for (int j = 0; j < with; j++)
+                for (int j = 0; j < width; j++)
                 {
                     Trace.Write(symbols[j, i]);
                 }
