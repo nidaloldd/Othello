@@ -1,5 +1,5 @@
 ﻿<Window
-    x:Class="Othello.MainWindow"
+    x:Class="Othello.PvPWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -95,26 +95,21 @@
                     Grid.Row="0"
                     Margin="0,50,0,0"
                     HorizontalAlignment="Center">
-                    <Border
-                        Background="#303030"
-                        BorderBrush="Black"
-                        BorderThickness="1"
-                        CornerRadius="10">
-                        <Button
-                            x:Name="playerSelect"
-                            Width="150"
-                            Height="40"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Background="Transparent"
-                            BorderBrush="{x:Null}"
-                            Click="PlayerSelect_Click"
-                            Content="Play"
-                            FontFamily="Arial Black"
-                            FontSize="20"
-                            Foreground="White"
-                            Style="{StaticResource MyButton}" />
-                    </Border>
+                    <Label
+                        HorizontalAlignment="Center"
+                        Content="Player 1 name:"
+                        FontFamily="Arial Black"
+                        FontSize="18"
+                        Foreground="White" />
+                    <TextBox x:Name="playerOneName" Margin="0,5,0,0" />
+                    <Label
+                        Margin="0,10,0,0"
+                        HorizontalAlignment="Center"
+                        Content="Player 2 name:"
+                        FontFamily="Arial Black"
+                        FontSize="18"
+                        Foreground="White" />
+                    <TextBox x:Name="playerTwoName" Margin="0,5,0,0" />
                     <Border
                         Margin="0,20,0,0"
                         Background="#303030"
@@ -122,17 +117,38 @@
                         BorderThickness="1"
                         CornerRadius="10">
                         <Button
-                            x:Name="openScores"
+                            x:Name="startGame"
                             Width="150"
                             Height="40"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             Background="Transparent"
                             BorderBrush="{x:Null}"
-                            Click="OpenScores_Click"
-                            Content="High scores"
+                            Click="StartGame_Click"
+                            Content="Play"
                             FontFamily="Arial Black"
                             FontSize="20"
+                            Foreground="White"
+                            Style="{StaticResource MyButton}" />
+                    </Border>
+                    <Border
+                        Margin="0,40,0,0"
+                        Background="#303030"
+                        BorderBrush="Black"
+                        BorderThickness="1"
+                        CornerRadius="10">
+                        <Button
+                            x:Name="backToMenu"
+                            Width="150"
+                            Height="40"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Background="Transparent"
+                            BorderBrush="{x:Null}"
+                            Click="BackToMenu_Click"
+                            Content="Back"
+                            FontFamily="Arial Black"
+                            FontSize="18"
                             Foreground="White"
                             Style="{StaticResource MyButton}" />
                     </Border>
