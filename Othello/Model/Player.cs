@@ -11,6 +11,14 @@ namespace Othello.Model
         int Score { get; set; }
         Color color { get; set; }
         public bool isPlayerTurn = false;
+        public string getName() {
+            return name;
+        }
+
+        public PlayerType getPlayerType()
+        {
+            return playerType;
+        }
 
         public Color getColor(){
             return color;
