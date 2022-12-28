@@ -12,8 +12,16 @@ namespace Othello.Model
             Player player1 = new Player(PlayerType.Human, "Player1");
             Player player2 = new Player(PlayerType.Human, "Player2");
 
-            Table table = new Table(player1, player2);
+            Player AIplayer = new Player(PlayerType.AI, "AIplayer");
+            Player AIplayer2 = new Player(PlayerType.AI, "AIplayer");
 
+            Table table = new Table(AIplayer, AIplayer2);
+
+            table.makeMove();
+            
+
+
+            /*
             Trace.WriteLine("-- 1 --");
             table.PrintTable();
             table.makeMove(new Position(3, 2)); table.makeMove(new Position(2, 2));
@@ -76,7 +84,7 @@ namespace Othello.Model
             Trace.WriteLine("-- 30 --");
             table.makeMove(new Position(2, 7)); table.makeMove(new Position(4, 7));
             Trace.WriteLine("-- 31 --");
-
+            */
         }
       
     }
