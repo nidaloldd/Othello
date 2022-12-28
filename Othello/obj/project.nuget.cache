@@ -1,10 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FrLI/7c3zk3ECP7D4QFAJC3cUEPdCwuB40m1JnJJdV3yxbuf01ZsoB+fUWZa6ICTXAl7T6sYzpYQg0d1n5K7tg==",
+  "dgSpecHash": "Y1B11cg3uQy+FqvMwGtBIxcQ8DI23A6HQxp7jQtiEQbM+D8G+PgEe3Ivh5u8b19nd1qUV1SoTe20oy5zpZPk+A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\minde\\OneDrive\\Asztali gép\\C#\\Othello\\Othello\\Othello.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\minde\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.23\\microsoft.netcore.app.host.win-x64.3.1.23.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\Users\\Péter\\Desktop\\DE\\ni C#\\othello\\Othello\\Othello.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }

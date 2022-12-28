@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\minde\OneDrive\Asztali gép\C#\Othello\Othello\obj\Debug\netcoreapp3.1\
+C:\Users\Péter\Desktop\DE\ni C#\othello\Othello\obj\Debug\netcoreapp3.1\
 Othello
 none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
-C:\Users\minde\OneDrive\Asztali gép\C#\Othello\Othello\App.xaml
-11407045341
+C:\Users\Péter\Desktop\DE\ni C#\othello\Othello\App.xaml
+61869109125
 
-10-1981648785
+15-723134995
 192-1533232326
-MainWindow.xaml;
+GameWindow.xaml;MainWindow.xaml;PlayerSelectWindow.xaml;PvEWindow.xaml;PvPWindow.xaml;ScoreboardWindow.xaml;
 
 False
 

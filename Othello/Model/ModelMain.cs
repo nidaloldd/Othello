@@ -9,8 +9,8 @@ namespace Othello.Model
     {
         static public void main()
         {
-            Player player1 = new Player(PlayerType.Human, "PLayer1");
-            Player player2 = new Player(PlayerType.Human, "PLayer2");
+            Player player1 = new Player(PlayerType.Human, "Player1");
+            Player player2 = new Player(PlayerType.Human, "Player2");
 
             Player AIplayer = new Player(PlayerType.AI, "AIplayer");
             Player AIplayer2 = new Player(PlayerType.AI, "AIplayer");
@@ -24,7 +24,7 @@ namespace Othello.Model
             /*
             Trace.WriteLine("-- 1 --");
             table.PrintTable();
-            table.makeMove(new Position(3,2)); table.makeMove(new Position(2,2));
+            table.makeMove(new Position(3, 2)); table.makeMove(new Position(2, 2));
             Trace.WriteLine("-- 2 --");
             table.makeMove(new Position(1, 2)); table.makeMove(new Position(5, 3));
             Trace.WriteLine("-- 3 --");

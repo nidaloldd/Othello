@@ -8,19 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\minde\\.nuget\\packages\\": {}
+    "C:\\Users\\Péter\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\minde\\OneDrive\\Asztali gép\\C#\\Othello\\Othello\\Othello.csproj",
+      "projectUniqueName": "C:\\Users\\Péter\\Desktop\\DE\\ni C#\\othello\\Othello\\Othello.csproj",
       "projectName": "Othello",
-      "projectPath": "C:\\Users\\minde\\OneDrive\\Asztali gép\\C#\\Othello\\Othello\\Othello.csproj",
-      "packagesPath": "C:\\Users\\minde\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\minde\\OneDrive\\Asztali gép\\C#\\Othello\\Othello\\obj\\",
+      "projectPath": "C:\\Users\\Péter\\Desktop\\DE\\ni C#\\othello\\Othello\\Othello.csproj",
+      "packagesPath": "C:\\Users\\Péter\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Péter\\Desktop\\DE\\ni C#\\othello\\Othello\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\minde\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Péter\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -55,12 +55,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[3.1.23, 3.1.23]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
@@ -69,7 +63,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }
