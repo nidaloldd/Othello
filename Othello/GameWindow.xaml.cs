@@ -78,6 +78,11 @@ namespace Othello
             Close();
         }
 
+        private void Pass_Click(object sender, RoutedEventArgs e)
+        {
+            //TBA
+        }
+
         public int Score1
         {
             get { return _score1; }

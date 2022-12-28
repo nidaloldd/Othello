@@ -772,6 +772,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <!--  menu button  -->
             <StackPanel Orientation="Horizontal">
@@ -792,6 +793,7 @@
                     FontFamily="Arial"
                     FontSize="18"
                     Foreground="White"
+                    Text="00:00"
                     Loaded="Timer_Loaded" />
             </StackPanel>
             <StackPanel
@@ -799,7 +801,33 @@
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center">
                 <Border
-                    Grid.Column="1"
+                    Margin="20,0,0,0"
+                    Background="#202020"
+                    BorderBrush="Black"
+                    BorderThickness="1"
+                    CornerRadius="10">
+                    <Button
+                        x:Name="passButton"
+                        Width="60"
+                        Height="30"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Background="Transparent"
+                        BorderBrush="{x:Null}"
+                        Click="Pass_Click"
+                        Content="Pass"
+                        FontFamily="Arial"
+                        FontSize="16"
+                        FontWeight="Bold"
+                        Foreground="White"
+                        Style="{StaticResource MyButton}" />
+                </Border>
+            </StackPanel>
+            <StackPanel
+                Grid.Column="2"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center">
+                <Border
                     Margin="0,0,20,0"
                     Background="#202020"
                     BorderBrush="Black"
@@ -807,7 +835,7 @@
                     CornerRadius="10">
                     <Button
                         x:Name="backToMenu"
-                        Width="150"
+                        Width="120"
                         Height="30"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
@@ -816,7 +844,7 @@
                         Click="BackToMenu_Click"
                         Content="Quit to Menu"
                         FontFamily="Arial"
-                        FontSize="17"
+                        FontSize="16"
                         FontWeight="Bold"
                         Foreground="White"
                         Style="{StaticResource MyButton}" />
@@ -824,5 +852,4 @@
             </StackPanel>
         </Grid>
     </StackPanel>
-
 </Window>
