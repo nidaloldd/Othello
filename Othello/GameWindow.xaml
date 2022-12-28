@@ -814,7 +814,7 @@
                         Background="Transparent"
                         BorderBrush="{x:Null}"
                         Click="BackToMenu_Click"
-                        Content="Back to Menu"
+                        Content="Quit to Menu"
                         FontFamily="Arial"
                         FontSize="17"
                         FontWeight="Bold"

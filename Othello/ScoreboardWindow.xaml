@@ -166,7 +166,7 @@
                                 Background="Transparent"
                                 BorderBrush="{x:Null}"
                                 Click="QuitGame_Click"
-                                Content="Quit"
+                                Content="Quit game"
                                 FontFamily="Arial Black"
                                 FontSize="20"
                                 Foreground="White"
