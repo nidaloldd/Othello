@@ -14,6 +14,7 @@ namespace Othello
         private int _score1, _score2;
         public string _player1, _player2;
         private bool _pvp;
+        private string _winner;
         private DispatcherTimer timer;
         private Stopwatch stopWatch;
 
@@ -80,7 +81,7 @@ namespace Othello
 
         private void Pass_Click(object sender, RoutedEventArgs e)
         {
-            //TBA
+            //tba
         }
 
         public int Score1
@@ -101,6 +102,11 @@ namespace Othello
                 tbScore2.Text = _score2.ToString();
             }
         }
-
+        private void EndGame()
+        {
+            if (_score1 > _score2) _winner = _player1;
+            else _winner = _player2;
+            Utility.SaveScores(_player1, _player2, _score1, _score2, _winner, elapsedTime.Text);
+        }
     }
 }

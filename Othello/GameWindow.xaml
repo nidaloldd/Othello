@@ -793,7 +793,6 @@
                     FontFamily="Arial"
                     FontSize="18"
                     Foreground="White"
-                    Text="00:00"
                     Loaded="Timer_Loaded" />
             </StackPanel>
             <StackPanel
