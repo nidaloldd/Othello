@@ -13,13 +13,11 @@ namespace Othello
 
             if (string.IsNullOrWhiteSpace(playerOneName.Text) || !regexItem.IsMatch(playerOneName.Text))
             {
-                _ = MessageBox.Show("Player 1's name is not valid!");
-                playerOneName.Text = "";
+                _ = MessageBox.Show("Player 1's name is not valid!\nNames can only contain letters and numbers.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else if (string.IsNullOrWhiteSpace(playerTwoName.Text) || !regexItem.IsMatch(playerTwoName.Text))
             {
-                _ = MessageBox.Show("Player 2's name is not valid!");
-                playerOneName.Text = "";
+                _ = MessageBox.Show("Player 2's name is not valid!\nNames can only contain letters and numbers.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {

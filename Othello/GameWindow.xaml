@@ -115,13 +115,14 @@
 
         <!--  playable field  -->
         <Grid
-            x:Name="Field"
+            x:Name="gameField"
             Width="500"
             Height="500"
             HorizontalAlignment="Center"
             VerticalAlignment="Bottom"
             Background="#009067"
-            ShowGridLines="False">
+            ShowGridLines="False"
+            PreviewMouseLeftButtonDown="Field_PreviewMouseLeftButtonDown">
 
             <!--  grid lines styling  -->
             <Grid.Resources>

@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Windows.Input;
 
 namespace Othello
 {
@@ -41,9 +42,9 @@ namespace Othello
             elapsedTime.Text = stopWatch.Elapsed.ToString(@"mm\:ss");
         }
 
-        private void TbScore1_Loaded(object sender, RoutedEventArgs e) { ((TextBlock)sender).Text = "0"; }
+        private void TbScore1_Loaded(object sender, RoutedEventArgs e) => ((TextBlock)sender).Text = "0";
 
-        private void TbScore2_Loaded(object sender, RoutedEventArgs e) { ((TextBlock)sender).Text = "0"; }
+        private void TbScore2_Loaded(object sender, RoutedEventArgs e) => ((TextBlock)sender).Text = "0";
 
         private void TbTurnIndicator_Loaded(object sender, RoutedEventArgs e)
         {
@@ -84,6 +85,11 @@ namespace Othello
             //tba
         }
 
+        private void Field_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            //tba
+        }
+
         public int Score1
         {
             get { return _score1; }
@@ -93,6 +99,8 @@ namespace Othello
                 tbScore1.Text = _score1.ToString();
             }
         }
+
+
         public int Score2
         {
             get { return _score2; }
@@ -102,7 +110,7 @@ namespace Othello
                 tbScore2.Text = _score2.ToString();
             }
         }
-        private void EndGame()
+        public void EndGame()
         {
             if (_score1 > _score2) _winner = _player1;
             else _winner = _player2;

@@ -13,8 +13,7 @@ namespace Othello
 
             if (string.IsNullOrWhiteSpace(playerOneName.Text) || !regexItem.IsMatch(playerOneName.Text))
             {
-                _ = MessageBox.Show("Player's name is not valid!");
-                playerOneName.Text = "";
+                _ = MessageBox.Show("Player's name is not valid!\nNames can only contain letters and numbers.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {

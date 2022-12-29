@@ -9,6 +9,6 @@ namespace Othello
         public int Score1 { get; set; }
         public int Score2 { get; set; }
         public string Winner { get; set; }
-        public string TimeElapsed { get; set; }
+        public string Time { get; set; }
     }
 }

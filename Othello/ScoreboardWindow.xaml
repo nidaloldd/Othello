@@ -40,13 +40,17 @@
             <Setter Property="FontSize" Value="15" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
         </Style>
         <Style TargetType="DataGrid">
-            <Setter Property="VerticalScrollBarVisibility" Value="Hidden" />
-            <Setter Property="MinRowHeight" Value="25" />
+            <Setter Property="MinRowHeight" Value="20" />
             <Setter Property="RowHeaderWidth" Value="0" />
             <Setter Property="RowBackground" Value="#505050" />
             <Setter Property="AlternatingRowBackground" Value="#303030" />
+            <Setter Property="VerticalScrollBarVisibility" Value="Hidden" />
+        </Style>
+        <Style TargetType="DataGridCell">
+            <Setter Property="TextBlock.TextAlignment" Value="Center" />
         </Style>
     </Window.Resources>
     <Grid Width="500" Height="750">
@@ -107,18 +111,29 @@
                 </Grid.RowDefinitions>
                 <Label
                     Grid.Row="0"
+                    HorizontalAlignment="Center"
                     Content="HIGH SCORES"
                     FontFamily="Arial Black"
                     FontSize="18"
-                    Foreground="white"
-                    HorizontalAlignment="Center"/>
+                    Foreground="white" />
                 <Grid Grid.Row="0">
                     <DataGrid
                         x:Name="highScores"
                         Margin="20,30,20,20"
                         Background="#303030"
+                        CanUserReorderColumns="False"
+                        CanUserResizeColumns="False"
+                        CanUserResizeRows="False"
+                        CanUserSortColumns="False"
                         ColumnWidth="*"
-                        IsReadOnly="True" />
+                        FontFamily="Arial"
+                        FontSize="13"
+                        Foreground="White"
+                        IsReadOnly="True">
+                        <DataGrid.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#009067" />
+                        </DataGrid.Resources>
+                    </DataGrid>
                 </Grid>
 
                 <!--  quit and menu button  -->
@@ -127,10 +142,11 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
                             <ColumnDefinition />
+                            <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Border
                             Grid.Column="0"
-                            Margin="0,0,50,0"
+                            Margin="0,0,30,0"
                             Background="#303030"
                             BorderBrush="Black"
                             BorderThickness="1"
@@ -152,7 +168,28 @@
                         </Border>
                         <Border
                             Grid.Column="1"
-                            Margin="50,0,0,0"
+                            Background="#603030"
+                            BorderBrush="Black"
+                            BorderThickness="1"
+                            CornerRadius="10">
+                            <Button
+                                x:Name="clearScores"
+                                Width="80"
+                                Height="40"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Background="Transparent"
+                                BorderBrush="{x:Null}"
+                                Click="ClearScores_Click"
+                                Content="Clear"
+                                FontFamily="Arial Black"
+                                FontSize="20"
+                                Foreground="White"
+                                Style="{StaticResource MyButton}" />
+                        </Border>
+                        <Border
+                            Grid.Column="2"
+                            Margin="30,0,0,0"
                             Background="#303030"
                             BorderBrush="Black"
                             BorderThickness="1"

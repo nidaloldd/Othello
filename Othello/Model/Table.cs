@@ -264,7 +264,10 @@ namespace Othello.Model
 
         public void makeMove(Position position)
         {
-            if (isGameOver()) { return; }
+            if (isGameOver()) 
+            {
+                return; 
+            }
             Trace.WriteLine(activePlayer.getColor() + "'s Turn");
 
             // throw an Error message if the given position is not a valid Move
