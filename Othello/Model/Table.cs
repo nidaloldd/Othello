@@ -12,7 +12,7 @@ namespace Othello.Model
         Player activePlayer;
         private const int width = 8;
         private const int height = 8;
-        private const int basePointUnit = 10;
+        private const int PointValue = 10;
 
         private Field[,] fields = new Field[8, 8];
         public List<Position> ValidMoves = new List<Position>();
@@ -287,16 +287,15 @@ namespace Othello.Model
                 getFieldOn(p).ReverseColor();
                 countRev++;
             }
-            calculateScore(activePlayer, countRev, Bonus);
-
             
-
             // set the Empty Color to the activPlayers color
             getFieldOn(position).SetColor(activePlayer.getColor());
 
+            calculateScore(activePlayer, countRev, Bonus);
+
             switchPlayer();
             getValidMoves(activePlayer);
-            
+
             PrintTable();
             if (activePlayer.getPlayerType() == PlayerType.AI) {
                 if (isGameOver()) { return; }
@@ -307,14 +306,46 @@ namespace Othello.Model
             makeMove(getBestValidMove());
         }
 
+        private int countColorOnTable(Color color) {
+            int count = 0;
+            foreach (Field f in fields) {
+                if (f.GetColor() == color) { count++; }
+            }
+            return count;
+        }
+        private bool isColorOnTableExist(Color color){
+            foreach (Field f in fields){
+                if (f.GetColor() == color) { return true; }
+            }
+            return false;
+        }
+
+        public void PassMove() {
+            switchPlayer();
+            getValidMoves(activePlayer);
+
+            PrintTable();
+            if (activePlayer.getPlayerType() == PlayerType.AI)
+            {
+                if (isGameOver()) { return; }
+                makeMove();
+            }
+        }
+
         private void calculateScore(Player player, int n,int bonusForAngle) {
             Trace.WriteLine("CountingRev: "+n);
             Trace.WriteLine("BonusAngle"+ bonusForAngle);
             int score = 0;
             for (int i = 1; i <= n; i++) {
-                score += i*basePointUnit;
+                score += i* PointValue;
             }
             score *= bonusForAngle;
+
+
+            if (!isColorOnTableExist(player.getEnemyColor()))
+            {
+                score += 100 * PointValue * countColorOnTable(player.getColor());
+            }
 
             player.addScore(score);
         }
@@ -322,6 +353,7 @@ namespace Othello.Model
         private bool isGameOver() {
             // Game Over
             if (ValidMoves.Count() == 0) {
+                Trace.WriteLine("GameOver");
                 return true;
             }
             return false;

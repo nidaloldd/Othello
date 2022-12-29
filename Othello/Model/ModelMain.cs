@@ -17,7 +17,22 @@ namespace Othello.Model
 
             Table table = new Table(player1, player2);
 
-           // table.makeMove();
+            // For AI vs AI
+            // table.makeMove();
+
+            // For testing PassMove
+            /*
+            Trace.WriteLine("-- 1 --");
+            table.PrintTable();
+            table.makeMove(new Position(3, 2));
+            table.PassMove();
+            table.PassMove();
+            table.PassMove();
+            table.PassMove();
+            table.makeMove(new Position(2, 2));
+            */
+
+            // For PLayer vs PLayer
             
             Trace.WriteLine("-- 1 --");
             table.PrintTable();
@@ -84,8 +99,11 @@ namespace Othello.Model
 
             Trace.WriteLine("Player1 Score: " + player1.getScore());
             Trace.WriteLine("Player2 Score: " + player2.getScore());
+            
         }
-      
+
+
     }
+            
 
 }

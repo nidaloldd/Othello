@@ -32,6 +32,11 @@ namespace Othello.Model
         public Color getColor(){
             return color;
         }
+        public Color getEnemyColor() {
+            if (color == Color.White) { return Color.Black; }
+            if (color == Color.Black) { return Color.White; }
+            return Color.Empty;
+        }
         public void setColor(Color color){
             this.color = color;
         }
