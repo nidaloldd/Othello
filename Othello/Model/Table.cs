@@ -12,6 +12,7 @@ namespace Othello.Model
         Player activePlayer;
         private const int width = 8;
         private const int height = 8;
+        private const int PointValue = 10;
 
         private Field[,] fields = new Field[8, 8];
         public List<Position> ValidMoves = new List<Position>();
@@ -121,8 +122,6 @@ namespace Othello.Model
          */
         private List<Position> getReversedPositions(Position pos)
         {
-            
-
             List<Position> positions = new List<Position>();
             List<Position> posforOneDir = new List<Position>();
             Position startPos = new Position(pos.getX(), pos.getY());
@@ -166,11 +165,54 @@ namespace Othello.Model
                     }
                 }
             }
+            
 
             // set the Empty Color to the activPlayers color
             getFieldOn(startPos).SetColor(Color.Empty);
 
             return positions;
+        }
+        private int getAngleBonus(Position pos)
+        {
+            Position startPos = new Position(pos.getX(), pos.getY());
+
+            // set the Empty Color to the activPlayers color
+            getFieldOn(startPos).SetColor(activePlayer.getColor());
+            int bonus = 0;
+            foreach (Position dir in Position.Directions)
+            {
+                // set the position to the starting values
+                int count = 0;
+                pos = new Position(startPos.getX(), startPos.getY());
+                while (true)
+                {
+                    // step to a direction
+                    pos += dir;
+                    // break if the next position is invalid
+                    if (!isPositionValid(pos)) { break; }
+                    // break if the next position is Empty
+                    if (getFieldOn(pos).GetColor() == Color.Empty)
+                    { break; }
+
+                    
+                    if (getFieldOn(pos).GetColor() == getFieldOn(startPos).GetColor())
+                    {
+                        if (count > 0) {
+                            bonus++;
+                        }
+                        
+                        break;
+                    }
+                    else
+                    {
+                        count++;
+                    }
+
+                }
+            }
+            // set the Empty Color to the activPlayers color
+            getFieldOn(startPos).SetColor(Color.Empty);
+            return bonus;
         }
 
         private Player GetStartingPlayer()
@@ -223,7 +265,7 @@ namespace Othello.Model
         public void makeMove(Position position)
         {
             if (isGameOver()) { return; }
-            Trace.WriteLine(activePlayer.getColor() + "s Turn");
+            Trace.WriteLine(activePlayer.getColor() + "'s Turn");
 
             // throw an Error message if the given position is not a valid Move
             if (!inValidMoves(position))
@@ -234,17 +276,26 @@ namespace Othello.Model
 
             // set the Empty Color to the activPlayers color
             getFieldOn(position).SetColor(activePlayer.getColor());
+
+            // Variable for counting reverses
+            int countRev = 0;
+
+            int Bonus = getAngleBonus(position);
             // Reverse the Colors 
             foreach (Position p in getReversedPositions(position))
-            {
+            { 
                 getFieldOn(p).ReverseColor();
+                countRev++;
             }
+            
             // set the Empty Color to the activPlayers color
             getFieldOn(position).SetColor(activePlayer.getColor());
 
+            calculateScore(activePlayer, countRev, Bonus);
+
             switchPlayer();
             getValidMoves(activePlayer);
-            
+
             PrintTable();
             if (activePlayer.getPlayerType() == PlayerType.AI) {
                 if (isGameOver()) { return; }
@@ -255,10 +306,54 @@ namespace Othello.Model
             makeMove(getBestValidMove());
         }
 
+        private int countColorOnTable(Color color) {
+            int count = 0;
+            foreach (Field f in fields) {
+                if (f.GetColor() == color) { count++; }
+            }
+            return count;
+        }
+        private bool isColorOnTableExist(Color color){
+            foreach (Field f in fields){
+                if (f.GetColor() == color) { return true; }
+            }
+            return false;
+        }
+
+        public void PassMove() {
+            switchPlayer();
+            getValidMoves(activePlayer);
+
+            PrintTable();
+            if (activePlayer.getPlayerType() == PlayerType.AI)
+            {
+                if (isGameOver()) { return; }
+                makeMove();
+            }
+        }
+
+        private void calculateScore(Player player, int n,int bonusForAngle) {
+            Trace.WriteLine("CountingRev: "+n);
+            Trace.WriteLine("BonusAngle"+ bonusForAngle);
+            int score = 0;
+            for (int i = 1; i <= n; i++) {
+                score += i* PointValue;
+            }
+            score *= bonusForAngle;
+
+
+            if (!isColorOnTableExist(player.getEnemyColor()))
+            {
+                score += 100 * PointValue * countColorOnTable(player.getColor());
+            }
+
+            player.addScore(score);
+        }
 
         private bool isGameOver() {
             // Game Over
             if (ValidMoves.Count() == 0) {
+                Trace.WriteLine("GameOver");
                 return true;
             }
             return false;
@@ -285,8 +380,8 @@ namespace Othello.Model
                 Random random = new Random();
                 randomMovePositioNumber = random.Next(sol.Count());
             }
-            Trace.WriteLine("max :"+ max);
-            Trace.WriteLine("number :" + sol.Count());
+            Trace.WriteLine("maxValue :"+ max);
+            Trace.WriteLine("numberOFMaxValue :" + sol.Count());
 
             return sol.ElementAt(randomMovePositioNumber);
 

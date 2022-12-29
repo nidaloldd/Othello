@@ -6,11 +6,20 @@ namespace Othello.Model
 {
     class Player
     {
-        PlayerType playerType { get; }
-        String name { get;}
-        int Score { get; set; }
-        Color color { get; set; }
-        public bool isPlayerTurn = false;
+        PlayerType playerType;
+        String name;
+        int score;
+        Color color;
+        public int getScore() {
+            return score;
+        }
+        public void setScore(int score){
+            this.score = score;
+        }
+        public void addScore(int score)
+        {
+            this.score += score;
+        }
         public string getName() {
             return name;
         }
@@ -22,6 +31,11 @@ namespace Othello.Model
 
         public Color getColor(){
             return color;
+        }
+        public Color getEnemyColor() {
+            if (color == Color.White) { return Color.Black; }
+            if (color == Color.Black) { return Color.White; }
+            return Color.Empty;
         }
         public void setColor(Color color){
             this.color = color;
