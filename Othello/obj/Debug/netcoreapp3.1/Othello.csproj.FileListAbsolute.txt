@@ -47,3 +47,32 @@ C:\Users\Péter\Desktop\DE\ni C#\othello\Othello\obj\Debug\netcoreapp3.1\PvPWind
 C:\Users\Péter\Desktop\DE\ni C#\othello\Othello\obj\Debug\netcoreapp3.1\PlayerSelectWindow.g.cs
 C:\Users\Péter\Desktop\DE\ni C#\othello\Othello\obj\Debug\netcoreapp3.1\PvEWindow.g.cs
 C:\Users\Péter\Desktop\DE\ni C#\othello\Othello\obj\Debug\netcoreapp3.1\PvPWindow.g.cs
+C:\Users\domin\Desktop\Othello\Othello\bin\Debug\netcoreapp3.1\Othello.exe
+C:\Users\domin\Desktop\Othello\Othello\bin\Debug\netcoreapp3.1\Othello.deps.json
+C:\Users\domin\Desktop\Othello\Othello\bin\Debug\netcoreapp3.1\Othello.runtimeconfig.json
+C:\Users\domin\Desktop\Othello\Othello\bin\Debug\netcoreapp3.1\Othello.runtimeconfig.dev.json
+C:\Users\domin\Desktop\Othello\Othello\bin\Debug\netcoreapp3.1\Othello.dll
+C:\Users\domin\Desktop\Othello\Othello\bin\Debug\netcoreapp3.1\Othello.pdb
+C:\Users\domin\Desktop\Othello\Othello\obj\Debug\netcoreapp3.1\Othello.csproj.AssemblyReference.cache
+C:\Users\domin\Desktop\Othello\Othello\obj\Debug\netcoreapp3.1\GameWindow.baml
+C:\Users\domin\Desktop\Othello\Othello\obj\Debug\netcoreapp3.1\MainWindow.baml
+C:\Users\domin\Desktop\Othello\Othello\obj\Debug\netcoreapp3.1\PlayerSelectWindow.baml
+C:\Users\domin\Desktop\Othello\Othello\obj\Debug\netcoreapp3.1\PvEWindow.baml
+C:\Users\domin\Desktop\Othello\Othello\obj\Debug\netcoreapp3.1\PvPWindow.baml
+C:\Users\domin\Desktop\Othello\Othello\obj\Debug\netcoreapp3.1\ScoreboardWindow.baml
+C:\Users\domin\Desktop\Othello\Othello\obj\Debug\netcoreapp3.1\GameWindow.g.cs
+C:\Users\domin\Desktop\Othello\Othello\obj\Debug\netcoreapp3.1\MainWindow.g.cs
+C:\Users\domin\Desktop\Othello\Othello\obj\Debug\netcoreapp3.1\PlayerSelectWindow.g.cs
+C:\Users\domin\Desktop\Othello\Othello\obj\Debug\netcoreapp3.1\PvEWindow.g.cs
+C:\Users\domin\Desktop\Othello\Othello\obj\Debug\netcoreapp3.1\PvPWindow.g.cs
+C:\Users\domin\Desktop\Othello\Othello\obj\Debug\netcoreapp3.1\ScoreboardWindow.g.cs
+C:\Users\domin\Desktop\Othello\Othello\obj\Debug\netcoreapp3.1\App.g.cs
+C:\Users\domin\Desktop\Othello\Othello\obj\Debug\netcoreapp3.1\Othello_MarkupCompile.cache
+C:\Users\domin\Desktop\Othello\Othello\obj\Debug\netcoreapp3.1\Othello.g.resources
+C:\Users\domin\Desktop\Othello\Othello\obj\Debug\netcoreapp3.1\Othello.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\domin\Desktop\Othello\Othello\obj\Debug\netcoreapp3.1\Othello.AssemblyInfoInputs.cache
+C:\Users\domin\Desktop\Othello\Othello\obj\Debug\netcoreapp3.1\Othello.AssemblyInfo.cs
+C:\Users\domin\Desktop\Othello\Othello\obj\Debug\netcoreapp3.1\Othello.csproj.CoreCompileInputs.cache
+C:\Users\domin\Desktop\Othello\Othello\obj\Debug\netcoreapp3.1\Othello.dll
+C:\Users\domin\Desktop\Othello\Othello\obj\Debug\netcoreapp3.1\Othello.pdb
+C:\Users\domin\Desktop\Othello\Othello\obj\Debug\netcoreapp3.1\Othello.genruntimeconfig.cache

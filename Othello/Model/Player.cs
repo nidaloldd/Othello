@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Othello.Model
 {
-    internal class Player
+    public class Player
     {
         private PlayerType playerType;
         private string name;

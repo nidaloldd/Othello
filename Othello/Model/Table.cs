@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Othello.Model
 {
-    internal class Table
+    public class Table
     {
         private Player player1, player2;
         private Player activePlayer;

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Othello.Model
 {
-    internal class Field
+    public class Field
     {
         private Color color;
         private Position position;
