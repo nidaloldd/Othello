@@ -1,97 +1,103 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
 
 namespace Othello.Model
 {
-    class Table
+    internal class Table
     {
-        Player player1, player2;
-        Player activePlayer;
-        private const int width = 8;
-        private const int height = 8;
+        private Player player1, player2;
+        private Player activePlayer;
+        private const int Width = 8;
+        private const int Height = 8;
         private const int PointValue = 10;
 
-        private Field[,] fields = new Field[8, 8];
+        private readonly Field[,] fields = new Field[8, 8];
         public List<Position> ValidMoves = new List<Position>();
 
-        /**
-         *  returns the right Field based on the given Position  
+        /*
+         *  returns the right Field based on the given Position
          */
-        public Field getFieldOn(Position position)
+        public Field GetFieldOn(Position position)
         {
-            return fields[position.getX(), position.getY()];
+            return fields[position.GetX(), position.GetY()];
         }
 
-        /**
-         *  returns if the given position is a valid position 
+        /*
+         *  returns if the given position is a valid position
          */
-        public bool isPositionValid(Position position)
+        public bool IsPositionValid(Position position)
         {
-            if (position.getX() > -1 && position.getX() < width &&
-                position.getY() > -1 && position.getY() < height)
+            if (position.GetX() > -1 && position.GetX() < Width &&
+                position.GetY() > -1 && position.GetY() < Height)
             {
                 return true;
             }
             return false;
         }
 
-        /**
+        /*
          *  fill up the ValidMoves array with the actual Valid moves
          *  of the given Player
          */
-        public void getValidMoves(Player player)
+        public void GetValidMoves(Player player)
         {
             ValidMoves = new List<Position>();
 
-            /**
-             * 
-             * Find the figures with the same Color as The Player
+            /*
+             * Find the figures with the same Color as the Player
              * and get the possible valid moves from them
              */
-            for (int i = 0; i < height; i++)
+            for (int i = 0; i < Height; i++)
             {
-                for (int j = 0; j < width; j++)
+                for (int j = 0; j < Width; j++)
                 {
-                    if (fields[i, j].GetColor() == player.getColor())
+                    if (fields[i, j].GetColor() == player.GetColor())
                     {
-
-                        getValiddMovesFrom(new Position(i, j));
-
+                        GetValidMovesFrom(new Position(i, j));
                     }
                 }
             }
         }
 
-        /**
-         * 
+        /*
          *  Add a valid move to the ValidMoves array based on the given
          *  Position and a Direction
          */
-        private void getValidMovesFrom(Position startPos, Position direction)
+        private void GetValidMovesFrom(Position startPos, Position direction)
         {
-            Position position = new Position(startPos.getX(), startPos.getY());
+            Position position = new Position(startPos.GetX(), startPos.GetY());
 
             // returns if the next step to a direction is invalid
-            if (!isPositionValid(position + direction)) { return; }
+            if (!IsPositionValid(position + direction))
+            {
+                return;
+            }
 
             // returns if the next step Color is the same as the starting color
-            if (getFieldOn(position + direction).GetColor() != getFieldOn(startPos).GetReverseColor())
-            { return; }
+            if (GetFieldOn(position + direction).GetColor() != GetFieldOn(startPos).GetReverseColor())
+            {
+                return;
+            }
 
             while (true)
             {
                 // make a step
                 position += direction;
-                if (!isPositionValid(position)) { break; }
+                if (!IsPositionValid(position))
+                {
+                    break;
+                }
 
                 // Returns if the next step has a the same color as the starting color
-                if ((getFieldOn(position).GetColor() == getFieldOn(startPos).GetColor()))
-                { break; }
-                // If the next step is Empty add a valid position  
-                else if (getFieldOn(position).GetColor() == Color.Empty)
+                if ((GetFieldOn(position).GetColor() == GetFieldOn(startPos).GetColor()))
+                {
+                    break;
+                }
+                // If the next step is Empty add a valid position
+                else if (GetFieldOn(position).GetColor() == Color.Empty)
                 {
                     ValidMoves.Add(position);
                     break;
@@ -99,59 +105,65 @@ namespace Othello.Model
             }
         }
 
-        /**
-         * 
+        /*
          * Get the possible valid moves from a Position
          */
-        private void getValiddMovesFrom(Position pos)
+        private void GetValidMovesFrom(Position pos)
         {
+            if (GetFieldOn(pos).GetColor() == Color.Empty)
+            {
+                return;
+            }
 
-            if (getFieldOn(pos).GetColor() == Color.Empty) { return; }
-            Position startPosition = new Position(pos.getX(), pos.getY());
+            Position startPosition = new Position(pos.GetX(), pos.GetY());
 
-            // call this method for all the Directions
+            // call this method for all directions
             foreach (Position dir in Position.Directions)
             {
-                getValidMovesFrom(startPosition, dir);
+                GetValidMovesFrom(startPosition, dir);
             }
         }
 
-
-        /**
-         * returns the position that needs to reverse its Color 
+        /*
+         * returns the position that needs to reverse its Color
          */
-        private List<Position> getReversedPositions(Position pos)
+        private List<Position> GetReversedPositions(Position pos)
         {
             List<Position> positions = new List<Position>();
-            List<Position> posforOneDir = new List<Position>();
-            Position startPos = new Position(pos.getX(), pos.getY());
+            List<Position> posForOneDir = new List<Position>();
+            Position startPos = new Position(pos.GetX(), pos.GetY());
 
             // set the Empty Color to the activPlayers color
-            getFieldOn(startPos).SetColor(activePlayer.getColor());
+            GetFieldOn(startPos).SetColor(activePlayer.GetColor());
 
             foreach (Position dir in Position.Directions)
             {
                 // set the position to the starting values
-                pos = new Position(startPos.getX(), startPos.getY());
+                pos = new Position(startPos.GetX(), startPos.GetY());
                 // initialize a List to store the right Positions of one direction
-                posforOneDir = new List<Position>();
+                posForOneDir = new List<Position>();
                 while (true)
                 {
                     // step to a direction
                     pos += dir;
 
                     // break if the next position is invalid
-                    if (!isPositionValid(pos)) { break; }
+                    if (!IsPositionValid(pos))
+                    {
+                        break;
+                    }
                     // break if the next position is Empty
-                    if (getFieldOn(pos).GetColor() == Color.Empty)
-                    { break; }
+                    if (GetFieldOn(pos).GetColor() == Color.Empty)
+                    {
+                        break;
+                    }
 
                     // if the starting color is the same the next position
                     // that means that this is a valid direction
-                    if (getFieldOn(pos).GetColor() == getFieldOn(startPos).GetColor())
+                    if (GetFieldOn(pos).GetColor() == GetFieldOn(startPos).GetColor())
                     {
                         // so add them to the List Which will return
-                        foreach (Position p in posforOneDir)
+                        foreach (Position p in posForOneDir)
                         {
                             positions.Add(p);
                         }
@@ -161,65 +173,76 @@ namespace Othello.Model
                     else
                     {
                         // these positions needs to be reversed
-                        posforOneDir.Add(pos);
+                        posForOneDir.Add(pos);
                     }
                 }
             }
-            
 
             // set the Empty Color to the activPlayers color
-            getFieldOn(startPos).SetColor(Color.Empty);
+            GetFieldOn(startPos).SetColor(Color.Empty);
 
             return positions;
         }
-        private int getAngleBonus(Position pos)
+        private int GetAngleBonus(Position pos)
         {
-            Position startPos = new Position(pos.getX(), pos.getY());
+            Position startPos = new Position(pos.GetX(), pos.GetY());
 
             // set the Empty Color to the activPlayers color
-            getFieldOn(startPos).SetColor(activePlayer.getColor());
+            GetFieldOn(startPos).SetColor(activePlayer.GetColor());
             int bonus = 0;
             foreach (Position dir in Position.Directions)
             {
                 // set the position to the starting values
                 int count = 0;
-                pos = new Position(startPos.getX(), startPos.getY());
+                pos = new Position(startPos.GetX(), startPos.GetY());
                 while (true)
                 {
                     // step to a direction
                     pos += dir;
-                    // break if the next position is invalid
-                    if (!isPositionValid(pos)) { break; }
-                    // break if the next position is Empty
-                    if (getFieldOn(pos).GetColor() == Color.Empty)
-                    { break; }
 
-                    
-                    if (getFieldOn(pos).GetColor() == getFieldOn(startPos).GetColor())
+                    // break if the next position is invalid
+                    if (!IsPositionValid(pos))
                     {
-                        if (count > 0) {
+                        break;
+                    }
+
+                    // break if the next position is Empty
+                    if (GetFieldOn(pos).GetColor() == Color.Empty)
+                    {
+                        break;
+                    }
+
+                    if (GetFieldOn(pos).GetColor() == GetFieldOn(startPos).GetColor())
+                    {
+                        if (count > 0)
+                        {
                             bonus++;
                         }
-                        
+
                         break;
                     }
                     else
                     {
                         count++;
                     }
-
                 }
             }
             // set the Empty Color to the activPlayers color
-            getFieldOn(startPos).SetColor(Color.Empty);
+            GetFieldOn(startPos).SetColor(Color.Empty);
             return bonus;
         }
 
         private Player GetStartingPlayer()
         {
             Random rnd = new Random();
-            if (rnd.Next(1) == 0) { return player1; }
-            else { return player2; }
+            if (rnd.Next(1) == 0)
+            {
+                return player1;
+            }
+            else
+            {
+                return player2;
+            }
         }
 
         // Constructor For the Table
@@ -227,17 +250,17 @@ namespace Othello.Model
         {
             this.player1 = pl1;
             this.player2 = pl2;
-            player1.setColor(Color.Black);
-            player2.setColor(Color.White);
+            player1.SetColor(Color.Black);
+            player2.SetColor(Color.White);
 
             // set up which Player will start the game.
             // who makes the first move
             activePlayer = GetStartingPlayer();
 
             // Set up the fields of the Table
-            for (int i = 0; i < height; i++)
+            for (int i = 0; i < Height; i++)
             {
-                for (int j = 0; j < width; j++)
+                for (int j = 0; j < Width; j++)
                 {
                     fields[j, i] = new Field(new Position(j, i), Color.Empty);
                 }
@@ -246,132 +269,156 @@ namespace Othello.Model
             fields[4, 4].SetColor(Color.White);
             fields[3, 4].SetColor(Color.Black);
             fields[4, 3].SetColor(Color.Black);
-            getValidMoves(activePlayer);
+            GetValidMoves(activePlayer);
         }
 
-        /**
+        /*
          * returns if the move to the given Position is valid
          */
-        private bool inValidMoves(Position position)
+        private bool InvalidMoves(Position position)
         {
             foreach (Position p in ValidMoves)
             {
-                if (p == position) { return true; }
+                if (p == position)
+                {
+                    return true;
+                }
             }
             return false;
         }
 
-
-        public void makeMove(Position position)
+        public void MakeMove(Position position)
         {
-            if (isGameOver()) 
+            if (IsGameOver())
             {
-                return; 
+                return;
             }
-            Trace.WriteLine(activePlayer.getColor() + "'s Turn");
+            Trace.WriteLine(activePlayer.GetColor() + "'s Turn");
 
             // throw an Error message if the given position is not a valid Move
-            if (!inValidMoves(position))
+            if (!InvalidMoves(position))
             {
-                Trace.WriteLine("InvalidMove From " + activePlayer.getColor() + " " + position.write());
+                Trace.WriteLine("InvalidMove From " + activePlayer.GetColor() + " " + position.Write());
                 return;
             }
 
             // set the Empty Color to the activPlayers color
-            getFieldOn(position).SetColor(activePlayer.getColor());
+            GetFieldOn(position).SetColor(activePlayer.GetColor());
 
             // Variable for counting reverses
             int countRev = 0;
 
-            int Bonus = getAngleBonus(position);
-            // Reverse the Colors 
-            foreach (Position p in getReversedPositions(position))
-            { 
-                getFieldOn(p).ReverseColor();
+            int bonus = GetAngleBonus(position);
+
+            // Reverse the Colors
+            foreach (Position p in GetReversedPositions(position))
+            {
+                GetFieldOn(p).ReverseColor();
                 countRev++;
             }
-            
+
             // set the Empty Color to the activPlayers color
-            getFieldOn(position).SetColor(activePlayer.getColor());
+            GetFieldOn(position).SetColor(activePlayer.GetColor());
 
-            calculateScore(activePlayer, countRev, Bonus);
+            CalculateScore(activePlayer, countRev, bonus);
 
-            switchPlayer();
-            getValidMoves(activePlayer);
+            SwitchPlayer();
+            GetValidMoves(activePlayer);
 
             PrintTable();
-            if (activePlayer.getPlayerType() == PlayerType.AI) {
-                if (isGameOver()) { return; }
-                makeMove();
+            if (activePlayer.GetPlayerType() == PlayerType.AI)
+            {
+                if (IsGameOver())
+                {
+                    return;
+                }
+                MakeMove();
             }
         }
-        public void makeMove() {
-            makeMove(getBestValidMove());
+        public void MakeMove()
+        {
+            MakeMove(GetBestValidMove());
         }
 
-        private int countColorOnTable(Color color) {
+        private int CountColorOnTable(Color color)
+        {
             int count = 0;
-            foreach (Field f in fields) {
-                if (f.GetColor() == color) { count++; }
+            foreach (Field f in fields)
+            {
+                if (f.GetColor() == color)
+                {
+                    count++;
+                }
             }
             return count;
         }
-        private bool isColorOnTableExist(Color color){
-            foreach (Field f in fields){
-                if (f.GetColor() == color) { return true; }
+        private bool IsColorOnTableExist(Color color)
+        {
+            foreach (Field f in fields)
+            {
+                if (f.GetColor() == color)
+                {
+                    return true;
+                }
             }
             return false;
         }
 
-        public void PassMove() {
-            switchPlayer();
-            getValidMoves(activePlayer);
+        public void PassMove()
+        {
+            SwitchPlayer();
+            GetValidMoves(activePlayer);
 
             PrintTable();
-            if (activePlayer.getPlayerType() == PlayerType.AI)
+            if (activePlayer.GetPlayerType() == PlayerType.AI)
             {
-                if (isGameOver()) { return; }
-                makeMove();
+                if (IsGameOver())
+                {
+                    return;
+                }
+                MakeMove();
             }
         }
 
-        private void calculateScore(Player player, int n,int bonusForAngle) {
-            Trace.WriteLine("CountingRev: "+n);
-            Trace.WriteLine("BonusAngle"+ bonusForAngle);
+        private void CalculateScore(Player player, int n, int bonusForAngle)
+        {
+            Trace.WriteLine("CountingRev: " + n);
+            Trace.WriteLine("BonusAngle" + bonusForAngle);
             int score = 0;
-            for (int i = 1; i <= n; i++) {
-                score += i* PointValue;
+            for (int i = 1; i <= n; i++)
+            {
+                score += i * PointValue;
             }
             score *= bonusForAngle;
 
-
-            if (!isColorOnTableExist(player.getEnemyColor()))
+            if (!IsColorOnTableExist(player.GetEnemyColor()))
             {
-                score += 100 * PointValue * countColorOnTable(player.getColor());
+                score += 100 * PointValue * CountColorOnTable(player.GetColor());
             }
 
-            player.addScore(score);
+            player.AddScore(score);
         }
 
-        private bool isGameOver() {
+        private bool IsGameOver()
+        {
             // Game Over
-            if (ValidMoves.Count() == 0) {
+            if (ValidMoves.Count() == 0)
+            {
                 Trace.WriteLine("GameOver");
                 return true;
             }
             return false;
         }
 
-        private Position getBestValidMove()
+        private Position GetBestValidMove()
         {
             Dictionary<Position, int> moves = new Dictionary<Position, int>();
 
-
-            foreach (Position p in ValidMoves){
-                moves.Add(p, getReversedPositions(p).Count());
+            foreach (Position p in ValidMoves)
+            {
+                moves.Add(p, GetReversedPositions(p).Count());
             }
 
-            
             int max = moves.Values.Max();
 
             var sol = from move in moves
@@ -379,18 +426,18 @@ namespace Othello.Model
                       select move.Key;
 
             int randomMovePositioNumber = 0;
-            if (sol.Count() > 1) {
+            if (sol.Count() > 1)
+            {
                 Random random = new Random();
                 randomMovePositioNumber = random.Next(sol.Count());
             }
-            Trace.WriteLine("maxValue :"+ max);
+            Trace.WriteLine("maxValue :" + max);
             Trace.WriteLine("numberOFMaxValue :" + sol.Count());
 
             return sol.ElementAt(randomMovePositioNumber);
-
         }
 
-        private void switchPlayer()
+        private void SwitchPlayer()
         {
             if (activePlayer == player1)
             {
@@ -402,16 +449,16 @@ namespace Othello.Model
             }
         }
 
-        /**
+        /*
          * Print The Table to the Console
          */
         public void PrintTable()
         {
-            String[,] symbols = new String[8, 8];
+            string[,] symbols = new string[8, 8];
 
-            for (int i = 0; i < height; i++)
+            for (int i = 0; i < Height; i++)
             {
-                for (int j = 0; j < width; j++)
+                for (int j = 0; j < Width; j++)
                 {
                     switch (fields[j, i].GetColor())
                     {
@@ -429,18 +476,17 @@ namespace Othello.Model
             }
             foreach (Position pos in ValidMoves)
             {
-                symbols[pos.getX(), pos.getY()] = " V ";
+                symbols[pos.GetX(), pos.GetY()] = " V ";
             }
-            for (int i = 0; i < height; i++)
+            for (int i = 0; i < Height; i++)
             {
-                for (int j = 0; j < width; j++)
+                for (int j = 0; j < Width; j++)
                 {
                     Trace.Write(symbols[j, i]);
                 }
-                Trace.WriteLine("");
+                Trace.WriteLine(string.Empty);
             }
             Trace.WriteLine("--------------------------");
-
         }
     }
 }

@@ -5,10 +5,10 @@ using System.Text.Json;
 
 namespace Othello
 {
-	public static class Utility
-	{
-		public static void SaveScores(string player1, string player2, int score1, int score2, string winner, string timeElapsed)
-		{
+    public static class Utility
+    {
+        public static void SaveScores(string player1, string player2, int score1, int score2, string winner, string timeElapsed)
+        {
             string json;
             try
             {
@@ -45,7 +45,6 @@ namespace Othello
             };
 
             json = JsonSerializer.Serialize(dataList, options);
-            
             File.WriteAllText(@"..\scores.json", json);
         }
 

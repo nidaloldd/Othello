@@ -4,8 +4,10 @@ namespace Othello
 {
     public partial class PlayerSelectWindow : Window
     {
-
-        public PlayerSelectWindow() => InitializeComponent();
+        public PlayerSelectWindow()
+        {
+            InitializeComponent();
+        }
         private void PveSelect_Click(object sender, RoutedEventArgs e)
         {
             PvEWindow pve = new PvEWindow();
@@ -24,6 +26,9 @@ namespace Othello
             mainWindow.Show();
             Close();
         }
-        private void QuitGame_Click(object sender, RoutedEventArgs e) => Close();
+        private void QuitGame_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

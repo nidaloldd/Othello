@@ -4,51 +4,64 @@ using System.Text;
 
 namespace Othello.Model
 {
-    class Player
+    internal class Player
     {
-        PlayerType playerType;
-        String name;
-        int score;
-        Color color;
-        public int getScore() {
+        private PlayerType playerType;
+        private string name;
+        private int score;
+        private Color color;
+        public int GetScore()
+        {
             return score;
         }
-        public void setScore(int score){
+        public void SetScore(int score)
+        {
             this.score = score;
         }
-        public void addScore(int score)
+        public void AddScore(int score)
         {
             this.score += score;
         }
-        public string getName() {
+        public string GetName()
+        {
             return name;
         }
 
-        public PlayerType getPlayerType()
+        public PlayerType GetPlayerType()
         {
             return playerType;
         }
 
-        public Color getColor(){
+        public Color GetColor()
+        {
             return color;
         }
-        public Color getEnemyColor() {
-            if (color == Color.White) { return Color.Black; }
-            if (color == Color.Black) { return Color.White; }
+        public Color GetEnemyColor()
+        {
+            if (color == Color.White)
+            {
+                return Color.Black;
+            }
+            if (color == Color.Black)
+            {
+                return Color.White;
+            }
             return Color.Empty;
         }
-        public void setColor(Color color){
+        public void SetColor(Color color)
+        {
             this.color = color;
         }
 
-        public Player(PlayerType playerType, String name) {
+        public Player(PlayerType playerType, string name)
+        {
             this.playerType = playerType;
             this.name = name;
         }
-
     }
 
-    public enum PlayerType { 
+    public enum PlayerType
+    {
         Human,
         AI
     }

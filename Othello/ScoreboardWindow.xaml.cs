@@ -1,6 +1,5 @@
-using System.Windows;
 using System.Linq;
-
+using System.Windows;
 
 namespace Othello
 {
@@ -32,6 +31,9 @@ namespace Othello
                 return;
             }
         }
-        private void QuitGame_Click(object sender, RoutedEventArgs e) => Close();
+        private void QuitGame_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

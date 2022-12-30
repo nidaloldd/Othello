@@ -4,7 +4,6 @@ namespace Othello
 {
     public partial class MainWindow : Window
     {
-
         public MainWindow()
         {
             InitializeComponent();
@@ -24,6 +23,9 @@ namespace Othello
             Close();
         }
 
-        private void QuitGame_Click(object sender, RoutedEventArgs e) { Close(); }
+        private void QuitGame_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

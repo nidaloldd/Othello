@@ -5,36 +5,34 @@ using System.Text;
 
 namespace Othello.Model
 {
-    class Position
+    internal class Position
     {
         private int X { get; set; }
         private int Y { get; set; }
-
-        
-
-        public int getX() {
+        public int GetX()
+        {
             return X;
         }
-        public int getY() {
+        public int GetY()
+        {
             return Y;
         }
-
         public Position()
         {
-
             this.X = 0;
             this.Y = 0;
         }
-        public Position(int X, int Y) {
-
-            this.X = X;
-            this.Y = Y;
+        public Position(int x, int y)
+        {
+            this.X = x;
+            this.Y = x;
         }
-        
-        /**
+
+        /*
          * An Array that contains all possible directions
          */
-        public static Position[] Directions = new Position[8] { 
+        public static Position[] Directions = new Position[8]
+        {
             new Position().Up(),
             new Position().DiagonalUpRight(),
             new Position().Right(),
@@ -43,9 +41,8 @@ namespace Othello.Model
             new Position().DiagonalDownLeft(),
             new Position().Left(),
             new Position().DiagonalUpLeft()
-
         };
-    
+
         public Position Up()
         {
             Y -= 1;
@@ -90,26 +87,25 @@ namespace Othello.Model
             X -= 1;
             return this;
         }
-        
-        /**
-         *  returns the Position as a String
+        /*
+         *  returns the Position as a string
          */
-        public String write() {
-            return ("X :" + getX() + " Y :"+getY());
+        public string Write()
+        {
+            return ("X :" + GetX() + " Y :" + GetY());
         }
 
         public static bool operator ==(Position pos1, Position pos2)
         {
-            return pos1.getX()==pos2.getX() && pos1.getY() == pos2.getY();
+            return pos1.GetX() == pos2.GetX() && pos1.GetY() == pos2.GetY();
         }
         public static Position operator +(Position pos1, Position pos2)
         {
-            return new Position( pos1.getX() + pos2.getX() , pos1.getY() + pos2.getY());
+            return new Position(pos1.GetX() + pos2.GetX(), pos1.GetY() + pos2.GetY());
         }
         public static bool operator !=(Position pos1, Position pos2)
         {
-            return !(pos1.getX() == pos2.getX() && pos1.getY() == pos2.getY());
+            return !(pos1.GetX() == pos2.GetX() && pos1.GetY() == pos2.GetY());
         }
-
     }
 }

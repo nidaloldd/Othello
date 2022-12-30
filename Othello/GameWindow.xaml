@@ -121,8 +121,8 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Bottom"
             Background="#009067"
-            ShowGridLines="False"
-            PreviewMouseLeftButtonDown="Field_PreviewMouseLeftButtonDown">
+            PreviewMouseLeftButtonDown="Field_PreviewMouseLeftButtonDown"
+            ShowGridLines="False">
 
             <!--  grid lines styling  -->
             <Grid.Resources>
