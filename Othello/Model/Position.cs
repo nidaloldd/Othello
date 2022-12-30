@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Othello.Model
 {
-    internal class Position
+    public class Position
     {
         private int X { get; set; }
         private int Y { get; set; }
@@ -25,7 +25,7 @@ namespace Othello.Model
         public Position(int x, int y)
         {
             this.X = x;
-            this.Y = x;
+            this.Y = y;
         }
 
         /*
@@ -50,8 +50,8 @@ namespace Othello.Model
         }
         public Position DiagonalUpRight()
         {
-            Y -= 1;
             X += 1;
+            Y -= 1;
             return this;
         }
         public Position Right()
@@ -61,8 +61,8 @@ namespace Othello.Model
         }
         public Position DiagonalDownRight()
         {
-            Y += 1;
             X += 1;
+            Y += 1;
             return this;
         }
         public Position Down()
@@ -83,8 +83,8 @@ namespace Othello.Model
         }
         public Position DiagonalUpLeft()
         {
-            Y -= 1;
             X -= 1;
+            Y -= 1;
             return this;
         }
         /*
