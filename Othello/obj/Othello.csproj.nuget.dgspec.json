@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Péter\\Desktop\\DE\\ni C#\\othello\\Othello\\Othello.csproj": {}
+    "C:\\Users\\domin\\Desktop\\Othello\\Othello\\Othello.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Péter\\Desktop\\DE\\ni C#\\othello\\Othello\\Othello.csproj": {
+    "C:\\Users\\domin\\Desktop\\Othello\\Othello\\Othello.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Péter\\Desktop\\DE\\ni C#\\othello\\Othello\\Othello.csproj",
+        "projectUniqueName": "C:\\Users\\domin\\Desktop\\Othello\\Othello\\Othello.csproj",
         "projectName": "Othello",
-        "projectPath": "C:\\Users\\Péter\\Desktop\\DE\\ni C#\\othello\\Othello\\Othello.csproj",
-        "packagesPath": "C:\\Users\\Péter\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Péter\\Desktop\\DE\\ni C#\\othello\\Othello\\obj\\",
+        "projectPath": "C:\\Users\\domin\\Desktop\\Othello\\Othello\\Othello.csproj",
+        "packagesPath": "C:\\Users\\domin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\domin\\Desktop\\Othello\\Othello\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Péter\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\domin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -45,7 +45,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -57,7 +58,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
