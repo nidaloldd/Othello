@@ -133,5 +133,33 @@
             Assert.AreEqual(Color.Black, table.GetFieldOn(startPos).GetColor());
             Assert.AreEqual(Color.White, table.ActivePlayer.GetColor());
         }
+
+[TestMethod]
+        public void TestGetBestValidMoveMethod()
+        {
+            // Arrange
+            Player player1 = new Player(PlayerType.Human, "player1");
+            Player player2 = new Player(PlayerType.AI, "player2");
+            var table = new Table(player1, player2);
+            var move1 = new Position(3, 4);
+            table.GetFieldOn(move1).SetColor(Color.White);
+            var move2 = new Position(4, 4);
+            table.GetFieldOn(move2).SetColor(Color.White);
+            table.GetValidMoves(player2);
+            // Act
+
+            var result1 = table.GetBestValidMove();
+            var result2 = table.GetBestValidMove();
+
+    // Assert
+    Assert.IsTrue(result1 == move1 || result1 == move2);
+    Assert.IsTrue(result2 == move1 || result2 == move2);
+    Assert.AreNotEqual(result1, result2
+
+            // Assert
+            Assert.AreEqual(Color.Black, table.GetFieldOn(endPos).GetColor());
+            Assert.AreEqual(Color.Black, table.GetFieldOn(startPos).GetColor());
+            Assert.AreEqual(Color.White, table.ActivePlayer.GetColor());
+        }
     }
 }
