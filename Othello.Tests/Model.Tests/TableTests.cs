@@ -111,7 +111,6 @@
             Assert.IsTrue(table.IsGameOver());
         }
         
-        
         [TestMethod]
         public void TestMakeMoveMethod()
         {
@@ -121,9 +120,9 @@
             var table = new Table(player1, player2);
             Position startPos = new Position(3, 3);
             Position endPos = new Position(4, 3);
-            table.fields[3, 3] = new Field(startPos, Color.Black);
-            table.fields[4, 3] = new Field(endPos, Color.Empty);
-            table.activePlayer = player1;
+            table.Fields[3, 3] = new Field(startPos, Color.Black);
+            table.Fields[4, 3] = new Field(endPos, Color.Empty);
+            table.ActivePlayer = player1;
             table.ValidMoves.Add(endPos);
 
             // Act
@@ -132,7 +131,7 @@
             // Assert
             Assert.AreEqual(Color.Black, table.GetFieldOn(endPos).GetColor());
             Assert.AreEqual(Color.Black, table.GetFieldOn(startPos).GetColor());
-            Assert.AreEqual(Color.White, table.activePlayer.GetColor());
+            Assert.AreEqual(Color.White, table.ActivePlayer.GetColor());
         }
     }
 }
