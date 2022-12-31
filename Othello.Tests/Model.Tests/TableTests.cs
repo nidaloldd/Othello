@@ -156,10 +156,6 @@
     Assert.IsTrue(result2 == move1 || result2 == move2);
     Assert.AreNotEqual(result1, result2
 
-            // Assert
-            Assert.AreEqual(Color.Black, table.GetFieldOn(endPos).GetColor());
-            Assert.AreEqual(Color.Black, table.GetFieldOn(startPos).GetColor());
-            Assert.AreEqual(Color.White, table.ActivePlayer.GetColor());
-        }
+      }
     }
 }
