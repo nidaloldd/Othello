@@ -1,6 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Othello.Model;
 using System.Linq;
+using System.Diagnostics;
+using Microsoft.VisualStudio.TestPlatform.Utilities;
+using System.Collections.Immutable;
 
 namespace Othello.Tests.Model.Tests
 {
@@ -76,5 +79,43 @@ namespace Othello.Tests.Model.Tests
             Assert.AreEqual(0, player1.GetScore());
 
         }
+
+        [TestMethod]
+        public void TestIsGameOver_False()
+        {
+            //Arrange
+            Player player1 = new Player(PlayerType.Human, "player1");
+            Player player2 = new Player(PlayerType.AI, "player2");
+            var table = new Table(player1, player2);
+ 
+            //Act
+            table.fields[3, 3].SetColor(player1.GetColor());
+            table.fields[4, 4].SetColor(player1.GetColor());
+            table.fields[2, 4].SetColor(player2.GetColor());
+            table.fields[4, 2].SetColor(player2.GetColor());
+
+            //Assert
+            Assert.IsFalse(table.IsGameOver());
+
+        }
+
+        [TestMethod]
+        public void TestisGameOver_true()
+        {
+            //Arrange
+            Player player1 = new Player(PlayerType.Human, "player1");
+            Player player2 = new Player(PlayerType.AI, "player2");
+            var table = new Table(player1, player2);
+
+            //Act
+            foreach (var field in table.fields)
+            {
+                field.SetColor(player1.GetColor());
+            }
+
+            //Assert
+            Assert.IsTrue(table.IsGameOver());
+        }
+
     }
 }
