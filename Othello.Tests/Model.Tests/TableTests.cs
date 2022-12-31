@@ -134,7 +134,7 @@
             Assert.AreEqual(Color.White, table.ActivePlayer.GetColor());
         }
 
-[TestMethod]
+        [TestMethod]
         public void TestGetBestValidMoveMethod()
         {
             // Arrange
@@ -146,15 +146,15 @@
             var move2 = new Position(4, 4);
             table.GetFieldOn(move2).SetColor(Color.White);
             table.GetValidMoves(player2);
+            
             // Act
-
             var result1 = table.GetBestValidMove();
             var result2 = table.GetBestValidMove();
 
-    // Assert
-    Assert.IsTrue(result1 == move1 || result1 == move2);
-    Assert.IsTrue(result2 == move1 || result2 == move2);
-    Assert.AreNotEqual(result1, result2
+            // Assert
+            Assert.IsTrue(result1 == move1 || result1 == move2);
+            Assert.IsTrue(result2 == move1 || result2 == move2);
+            Assert.AreNotEqual(result1, result2);
 
       }
     }
