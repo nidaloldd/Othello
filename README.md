@@ -33,7 +33,7 @@
 ### After the game
 - The user has the option to either start a new game, in which case they will be taken back to the game mode selection window, or view the High Scores window.
 - Finished game details are stored in a JSON file and can be viewed in descending order based on scores in the High Scores window.
-> The high scores can be cleared at any time by pressing a button (confirmation is required).
+> High Scores can be cleared at any time by pressing the clear button (confirmation is required).
 
 ## Screenshots
 - Main Menu 
