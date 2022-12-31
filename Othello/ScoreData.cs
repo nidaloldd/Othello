@@ -2,6 +2,10 @@
 
 namespace Othello
 {
+    /** <summary>
+     * Custom class for storing high scores.
+     * </summary> 
+     */
     public class ScoreData
     {
         public string Player1 { get; set; }

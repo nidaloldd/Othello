@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace Othello
 {
@@ -43,7 +44,6 @@ namespace Othello
         private Model.Player playerOne;
         private Model.Player playerTwo;
         private Model.Table table;
-        private bool isValidMove = false;
 
         public GameWindow(string player1, string player2, bool pvp)
         {
@@ -63,28 +63,34 @@ namespace Othello
             }
             table = new Model.Table(playerOne, playerTwo);
 
+            // Draw the disks and update scoreboard.
             Draw();
+
+            // If the starting player is AI, tell it to make the first move.
             if (table.activePlayer.playerType == Model.PlayerType.AI)
             {
                 AiMove();
             }
-            //AsyncDraw();
+            
             StartTimer();
         }
-        private async void AsyncDraw()
-        {
-            while (true)
-            {
-                if (table.IsGameOver())
-                {
-                    break;
-                }
-                await Task.Delay(1000);
-                Draw();
-            }
-        }
+
+        /** <summary>
+         * Method used to draw the disks and update scoreboard after every move or pass.
+         * </summary>
+         */
         private void Draw()
         {
+            /* Iterate backwards through all children of the grid
+             * and remove all ellipses that are wider than 10.
+             * 
+             * This is needed because otherwise this method would
+             * draw new ellipses on top of the existing ones.
+             * 
+             * The type casting and size check is in place because
+             * there are other elements present that we do not want
+             * to remove.
+             */
             for (int i = gameField.Children.Count - 1; i >= 0; i--)
             {
                 UIElement child = gameField.Children[i];
@@ -93,6 +99,7 @@ namespace Othello
                     gameField.Children.RemoveAt(i);
                 }
             }
+            // Create the ellipses and set their properties.
             for (int row = 0; row < 8; row++)
             {
                 for (int col = 0; col < 8; col++)
@@ -119,44 +126,37 @@ namespace Othello
                             break;
                     }
 
-                    isValidMove = false;
-                    foreach (Model.Position p in table.ValidMoves)
-                    {
-                        if (p.GetX() == row && p.GetY() == col)
-                        {
-                            isValidMove = true;
-                            break;
-                        }
-                    }
-                    if (isValidMove)
+                    // Check for valid moves and set the ellipse properties accordingly.
+                    if (table.ValidMoves.Any(x => x.GetX() == row && x.GetY() == col))
                     {
                         ellipse.Fill = Brushes.Transparent;
                         ellipse.Stroke = Brushes.Black;
                     }
 
+                    // Set the click event handler for all ellipses, and add them to the grid.
                     ellipse.MouseDown += Ellipse_MouseDown;
-
                     gameField.Children.Add(ellipse);
                 }
             }
+            // Update scoreboard text.
             Score1 = table.player1.GetScore();
             Score2 = table.player2.GetScore();
             tbTurnIndicator.Text = table.activePlayer.name + "'s turn";
         }
 
+        /** <summary>
+        * Interaction logic for disks on the board.
+        * </summary>
+        */
         private void Ellipse_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Ellipse ellipse = (Ellipse)sender;
             int row = Grid.GetRow(ellipse);
             int col = Grid.GetColumn(ellipse);
             bool isValid = false;
-            foreach (Model.Position p in table.ValidMoves)
+            if (table.ValidMoves.Any(x => x.GetX() == row && x.GetY() == col))
             {
-                if (p.GetX() == row && p.GetY() == col)
-                {
-                    isValid = true;
-                    break;
-                }
+                isValid = true;
             }
             if (isValid && table.activePlayer.GetPlayerType() == Model.PlayerType.Human)
             {
@@ -174,18 +174,25 @@ namespace Othello
             }
         }
 
+        /** <summary>
+         * Method for the AI's turn, with an async delay to simulate it "thinking".
+         * </summary>
+         */
         private async void AiMove()
         {
             if (table.IsGameOver())
             {
                 return;
             }
+
             await Task.Run(async () =>
             {
                 await Task.Delay(1000);
             });
             table.MakeMove(table.GetBestValidMove());
+
             Draw();
+
             if (table.IsGameOver())
             {
                 EndGame();
@@ -193,6 +200,7 @@ namespace Othello
             }
         }
 
+        // Create and start a stopwatch for elapsed time display.
         private void StartTimer()
         {
             timer = new DispatcherTimer();
@@ -203,11 +211,13 @@ namespace Othello
             timer.Start();
         }
 
+        // Update the timer TextBlock on each tick.
         private void TimerTick(object sender, EventArgs e)
         {
             elapsedTime.Text = stopWatch.Elapsed.ToString(@"mm\:ss");
         }
 
+        // Menu button click event handler.
         private void BackToMenu_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
@@ -215,8 +225,13 @@ namespace Othello
             Close();
         }
 
+        // Pass button click event handler.
         private void Pass_Click(object sender, RoutedEventArgs e)
         {
+            /* If the game isn't over and it's either a
+             * player vs. player game, or the active player
+             * is a Human, pass their turn, and update the window.
+             */
             if (!table.IsGameOver())
             {
                 if (_pvp)
@@ -231,9 +246,18 @@ namespace Othello
                     Draw();
                 }
             }
+            // Check if the game is over after a passed turn.
+            if (table.IsGameOver())
+            {
+                EndGame();
+            }
             else return;
         }
 
+        /** <summary>
+         * Method to save scores and notify player(s) that the game has ended.
+         * </summary>
+         */
         private void EndGame()
         {
             stopWatch.Stop();

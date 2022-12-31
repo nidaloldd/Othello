@@ -8,7 +8,10 @@ namespace Othello
         public ScoreboardWindow()
         {
             InitializeComponent();
+
+            // Order data descending based on Score1 first, then by Score2.
             var sortedData = Utility.ReadScores().OrderByDescending(d => d.Score1).ThenByDescending(d => d.Score2).ToList();
+
             highScores.ItemsSource = sortedData;
         }
 
@@ -18,8 +21,10 @@ namespace Othello
             mainWindow.Show();
             Close();
         }
+        
         private void ClearScores_Click(object sender, RoutedEventArgs e)
         {
+            // Ask the user if they want to clear all high scores.
             MessageBoxResult result = MessageBox.Show("Are you sure you want to clear all scores?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
@@ -31,9 +36,7 @@ namespace Othello
                 return;
             }
         }
-        private void QuitGame_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
+
+        private void QuitGame_Click(object sender, RoutedEventArgs e) => Close();
     }
 }

@@ -5,6 +5,10 @@ using System.Text.Json;
 
 namespace Othello
 {
+    /** <summary>
+     * Utility class for managing high scores storage in a JSON file.
+     * </summary>
+     */
     public static class Utility
     {
         public static void SaveScores(string player1, string player2, int score1, int score2, string winner, string timeElapsed)
@@ -72,6 +76,7 @@ namespace Othello
 
             return dataList;
         }
+
         public static void ClearScores()
         {
             string json = "[]";
