@@ -111,6 +111,7 @@ namespace Othello.Model
          */
         private void GetValidMovesFrom(Position pos)
         {
+            // return if the given position is empty
             if (GetFieldOn(pos).GetColor() == Color.Empty)
             {
                 return;
@@ -185,6 +186,7 @@ namespace Othello.Model
             return positions;
         }
 
+        // returns the bonus multiplier depend on which Angle changed by the move of the player
         private int GetAngleBonus(List<Position> directions) {
             int Bonus = 0;
             Trace.WriteLine("UP " + new Position().Up().Write());
@@ -192,13 +194,13 @@ namespace Othello.Model
                 Trace.WriteLine(p.Write());
             }
             // Bonus for Vertical Angle
-            if (directions.Any(x => x == new Position().Up()) || directions.Any(x => x == new Position().Down())){
+            if (directions.Any(x => x == new Position().Up()) || directions.Any(x => x == new Position().Down()))
+            {
                 Bonus++;
             }
             // Bonus for Horizontal Angle
             if (directions.Any(x => x == new Position().Left()) || directions.Any(x => x == new Position().Right()))
             {
-                
                 Bonus++;
             }
             // Bonus for Diagonal Angle
@@ -210,6 +212,8 @@ namespace Othello.Model
 
             return Bonus;
         }
+
+        // returns a list of directions that changed by the move of the player
         private List<Position> GetAngleDirections(Position pos)
         {
             List<Position> angleDirections = new List<Position>();
@@ -259,6 +263,7 @@ namespace Othello.Model
             return angleDirections;
         }
 
+        // returns a random a Starting PLayer
         public Player GetStartingPlayer()
         {
             Random rnd = new Random();
@@ -315,6 +320,7 @@ namespace Othello.Model
             return false;
         }
 
+        // The activ Player make the move to the given position 
         public void MakeMove(Position position)
         {
             if (IsGameOver())
@@ -350,16 +356,13 @@ namespace Othello.Model
 
             CalculateScore(activePlayer, countRev, bonus);
 
-            SwitchPlayer();
+            SwitchActivePlayer();
             GetValidMoves(activePlayer);
 
             PrintTable();
         }
-        public void MakeMove()
-        {
-            MakeMove(GetBestValidMove());
-        }
 
+        // return the count of the figures of the given color
         private int CountColorOnTable(Color color)
         {
             int count = 0;
@@ -372,6 +375,7 @@ namespace Othello.Model
             }
             return count;
         }
+        // return if there is at least one figure of the given color
         private bool IsColorOnTableExist(Color color)
         {
             foreach (Field f in fields)
@@ -384,9 +388,10 @@ namespace Othello.Model
             return false;
         }
 
+        // the activ player dont make any move
         public void PassMove()
         {
-            SwitchPlayer();
+            SwitchActivePlayer();
             GetValidMoves(activePlayer);
 
             PrintTable();
@@ -400,14 +405,15 @@ namespace Othello.Model
             }*/
         }
 
-        private void CalculateScore(Player player, int n, int bonusForAngle)
+        // Calculate and add the earned scores to the given Player
+        private void CalculateScore(Player player, int numberOfRevers, int bonusForAngle)
         {
-            Trace.WriteLine("CountingRev: " + n);
+            Trace.WriteLine("CountingRev: " + numberOfRevers);
             Trace.WriteLine("BonusAngle" + bonusForAngle);
             int score = 0;
-            for (int i = 1; i <= n; i++)
+            for (int n = 1; n <= numberOfRevers; n++)
             {
-                score += i * PointValue;
+                score += n * PointValue;
             }
             score *= bonusForAngle;
 
@@ -419,6 +425,7 @@ namespace Othello.Model
             player.AddScore(score);
         }
 
+        // returns if there is no valid move for the activ player
         public bool IsGameOver()
         {
             // Game Over
@@ -430,6 +437,7 @@ namespace Othello.Model
             return false;
         }
 
+        // returns the Position of move that will revers the most of the enemy figure 
         public Position GetBestValidMove()
         {
             Dictionary<Position, int> moves = new Dictionary<Position, int>();
@@ -457,7 +465,8 @@ namespace Othello.Model
             return sol.ElementAt(randomMovePositioNumber);
         }
 
-        private void SwitchPlayer()
+        // switch the active Player
+        private void SwitchActivePlayer()
         {
             if (activePlayer == player1)
             {
