@@ -4,7 +4,7 @@ namespace Othello
 {
     /** <summary>
      * Custom class for storing high scores.
-     * </summary> 
+     * </summary>
      */
     public class ScoreData
     {

@@ -3,7 +3,7 @@
     public class Field
     {
         private Color color;
-        public Position position;
+        private Position position;
 
         public Field(Position position, Color color)
         {

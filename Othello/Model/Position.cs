@@ -7,31 +7,31 @@ namespace Othello.Model
 {
     public class Position
     {
-        private int X { get; set; }
-        private int Y { get; set; }
-        public int GetX()
+        private int _x;
+        private int _y;
+        public int X
         {
-            return X;
+            get { return _x; }
+            set { _x = value; }
         }
-        public int GetY()
+        public int Y
         {
-            return Y;
+            get { return _y; }
+            set { _y = value; }
         }
         public Position()
         {
-            this.X = 0;
-            this.Y = 0;
+            _x = 0;
+            _y = 0;
         }
         public Position(int x, int y)
         {
-            this.X = x;
-            this.Y = y;
+            _x = x;
+            _y = y;
         }
 
-        /*
-         * An Array that contains all possible directions
-         */
-        public static Position[] Directions = new Position[8]
+        // An Array that contains all possible directions.
+        public static readonly Position[] Directions = new Position[8]
         {
             new Position().Up(),
             new Position().DiagonalUpRight(),
@@ -45,69 +45,66 @@ namespace Othello.Model
 
         public Position Up()
         {
-            Y -= 1;
+            _y -= 1;
             return this;
         }
         public Position DiagonalUpRight()
         {
-            X += 1;
-            Y -= 1;
+            _x += 1;
+            _y -= 1;
             return this;
         }
         public Position Right()
         {
-            X += 1;
+            _x += 1;
             return this;
         }
         public Position DiagonalDownRight()
         {
-            X += 1;
-            Y += 1;
+            _x += 1;
+            _y += 1;
             return this;
         }
         public Position Down()
         {
-            Y += 1;
+            _y += 1;
             return this;
         }
         public Position DiagonalDownLeft()
         {
-            Y += 1;
-            X -= 1;
+            _y += 1;
+            _x -= 1;
             return this;
         }
         public Position Left()
         {
-            X -= 1;
+            _x -= 1;
             return this;
         }
         public Position DiagonalUpLeft()
         {
-            X -= 1;
-            Y -= 1;
+            _x -= 1;
+            _y -= 1;
             return this;
         }
-        /*
-         *  returns the Position as a string
-         */
+
+        // Returns the Position as a string.
         public string Write()
         {
-            return ("X :" + GetX() + " Y :" + GetY());
+            return ("X :" + _x + " Y :" + _y);
         }
 
         public static bool operator ==(Position pos1, Position pos2)
         {
-            return pos1.GetX() == pos2.GetX() && pos1.GetY() == pos2.GetY();
+            return pos1._x == pos2._x && pos1._y == pos2._y;
         }
         public static Position operator +(Position pos1, Position pos2)
         {
-            return new Position(pos1.GetX() + pos2.GetX(), pos1.GetY() + pos2.GetY());
+            return new Position(pos1._x + pos2._x, pos1._y + pos2._y);
         }
         public static bool operator !=(Position pos1, Position pos2)
         {
-            return !(pos1.GetX() == pos2.GetX() && pos1.GetY() == pos2.GetY());
+            return !(pos1._x == pos2._x && pos1._y == pos2._y);
         }
-
-
     }
 }

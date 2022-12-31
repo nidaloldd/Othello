@@ -1,8 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Othello.Model;
-
-namespace Othello.Tests.Model.Tests
+﻿namespace Othello.Tests.Model.Tests
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Othello.Model;
+
     [TestClass]
     public class PlayerTests
     {
@@ -14,7 +14,7 @@ namespace Othello.Tests.Model.Tests
             player.SetScore(10);
 
             // Act
-            var result = player.GetScore();
+            var result = player.Score;
 
             // Assert
             Assert.AreEqual(10, result);
@@ -31,7 +31,7 @@ namespace Othello.Tests.Model.Tests
             player.SetScore(7);
 
             // Assert
-            Assert.AreEqual(7, player.GetScore());
+            Assert.AreEqual(7, player.Score);
         }
 
         [TestMethod]
@@ -45,7 +45,7 @@ namespace Othello.Tests.Model.Tests
             player.AddScore(3);
 
             // Assert
-            Assert.AreEqual(8, player.GetScore());
+            Assert.AreEqual(8, player.Score);
         }
 
         [TestMethod]
@@ -55,7 +55,7 @@ namespace Othello.Tests.Model.Tests
             var player = new Player(PlayerType.Human, "John");
 
             // Act
-            var result = player.GetName();
+            var result = player.Name;
 
             // Assert
             Assert.AreEqual("John", result);
@@ -109,12 +109,11 @@ namespace Othello.Tests.Model.Tests
             var player = new Player(PlayerType.Human, "John");
             player.SetColor(Color.Black);
 
-            //Act
+            // Act
             var result = player.GetEnemyColor();
 
-            //Assert
+            // Assert
             Assert.AreEqual(Color.White, result);
         }
     }
 }
-

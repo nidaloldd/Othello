@@ -1,8 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Othello.Model;
-
-namespace Othello.Tests.Model.Tests
+﻿namespace Othello.Tests.Model.Tests
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Othello.Model;
+
     [TestClass]
     public class PositionTests
     {
@@ -13,7 +13,7 @@ namespace Othello.Tests.Model.Tests
             var position = new Position(5, 0);
 
             // Act
-            var result = position.GetX();
+            var result = position.X;
 
             // Assert
             Assert.AreEqual(5, result);
@@ -22,13 +22,13 @@ namespace Othello.Tests.Model.Tests
         [TestMethod]
         public void GetY_PositionYIs3_Returns3()
         {
-            //Arrange
-            var pos = new Position(0,3);
+            // Arrange
+            var pos = new Position(0, 3);
 
-            //Act
-            var result = pos.GetY();
+            // Act
+            var result = pos.Y;
 
-            //Assert
+            // Assert
             Assert.AreEqual(3, result);
         }
 
@@ -37,26 +37,26 @@ namespace Othello.Tests.Model.Tests
         {
             // Arrange
             var position = new Position();
-            
+
             // Act
             var result = position.Up();
 
             // Assert
-            Assert.AreEqual(-1, result.GetY());
+            Assert.AreEqual(-1, result.Y);
         }
 
         [TestMethod]
         public void DiagonalUpRight_PositionYIs2AndXIs1_DecrementsYBy1AndIncrementsXBy1()
         {
-            //Arrange 
+            // Arrange
             var pos = new Position(0, 0);
 
-            //Act
+            // Act
             var result = pos.DiagonalUpRight();
 
-            //Assert
-            Assert.AreEqual(1, result.GetX());
-            Assert.AreEqual(-1, result.GetY());
+            // Assert
+            Assert.AreEqual(1, result.X);
+            Assert.AreEqual(-1, result.Y);
         }
 
         [TestMethod]
@@ -69,7 +69,7 @@ namespace Othello.Tests.Model.Tests
             var result = position.Right();
 
             // Assert
-            Assert.AreEqual(6, result.GetX());
+            Assert.AreEqual(6, result.X);
         }
 
         [TestMethod]
@@ -82,8 +82,8 @@ namespace Othello.Tests.Model.Tests
             var result = pos.DiagonalDownRight();
 
             // Assert
-            Assert.AreEqual(4, result.GetY());
-            Assert.AreEqual(6, result.GetX());
+            Assert.AreEqual(4, result.Y);
+            Assert.AreEqual(6, result.X);
         }
 
         [TestMethod]
@@ -96,7 +96,7 @@ namespace Othello.Tests.Model.Tests
             var result = position.Down();
 
             // Assert
-            Assert.AreEqual(1, result.GetY());
+            Assert.AreEqual(1, result.Y);
         }
 
         [TestMethod]
@@ -108,9 +108,9 @@ namespace Othello.Tests.Model.Tests
             // Act
             var result = position.DiagonalDownLeft();
 
-            //Assert
-            Assert.AreEqual(6, result.GetY());
-            Assert.AreEqual(2, result.GetX());
+            // Assert
+            Assert.AreEqual(6, result.Y);
+            Assert.AreEqual(2, result.X);
         }
 
         [TestMethod]
@@ -123,7 +123,7 @@ namespace Othello.Tests.Model.Tests
             var result = position.Left();
 
             // Assert
-            Assert.AreEqual(4, result.GetX());
+            Assert.AreEqual(4, result.X);
         }
 
         [TestMethod]
@@ -136,8 +136,8 @@ namespace Othello.Tests.Model.Tests
             var result = position.DiagonalUpLeft();
 
             // Assert
-            Assert.AreEqual(-1, result.GetX());
-            Assert.AreEqual(-1, result.GetY());
+            Assert.AreEqual(-1, result.X);
+            Assert.AreEqual(-1, result.Y);
         }
 
         [TestMethod]
@@ -192,10 +192,8 @@ namespace Othello.Tests.Model.Tests
             var result = position1 + position2;
 
             // Assert
-            Assert.AreEqual(7, result.GetX());
-            Assert.AreEqual(7, result.GetY());
+            Assert.AreEqual(7, result.X);
+            Assert.AreEqual(7, result.Y);
         }
     }
 }
-
-

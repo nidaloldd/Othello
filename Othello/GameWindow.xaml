@@ -70,7 +70,7 @@
                     VerticalAlignment="Center"
                     FontFamily="Arial Black"
                     FontSize="20"
-                    Foreground="White"/>
+                    Foreground="White" />
                 <TextBlock
                     x:Name="tbScore2"
                     Grid.Row="1"
@@ -80,7 +80,7 @@
                     VerticalAlignment="Center"
                     FontFamily="Arial Black"
                     FontSize="20"
-                    Foreground="White"/>
+                    Foreground="White" />
                 <Ellipse
                     Grid.Row="1"
                     Grid.Column="3"
@@ -267,7 +267,7 @@
                     VerticalAlignment="Center"
                     FontFamily="Arial"
                     FontSize="18"
-                    Foreground="White"/>
+                    Foreground="White" />
             </StackPanel>
             <StackPanel
                 Grid.Column="1"

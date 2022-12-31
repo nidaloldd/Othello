@@ -1,17 +1,13 @@
 using System;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Globalization;
-using System.Runtime.CompilerServices;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using System.Threading.Tasks;
-using System.Linq;
 
 namespace Othello
 {
@@ -67,11 +63,11 @@ namespace Othello
             Draw();
 
             // If the starting player is AI, tell it to make the first move.
-            if (table.activePlayer.playerType == Model.PlayerType.AI)
+            if (table.ActivePlayer.GetPlayerType() == Model.PlayerType.AI)
             {
                 AiMove();
             }
-            
+
             StartTimer();
         }
 
@@ -83,10 +79,10 @@ namespace Othello
         {
             /* Iterate backwards through all children of the grid
              * and remove all ellipses that are wider than 10.
-             * 
+             *
              * This is needed because otherwise this method would
              * draw new ellipses on top of the existing ones.
-             * 
+             *
              * The type casting and size check is in place because
              * there are other elements present that we do not want
              * to remove.
@@ -94,7 +90,7 @@ namespace Othello
             for (int i = gameField.Children.Count - 1; i >= 0; i--)
             {
                 UIElement child = gameField.Children[i];
-                if (child is Ellipse ellipse && ellipse.Width>10)
+                if (child is Ellipse ellipse && ellipse.Width > 10)
                 {
                     gameField.Children.RemoveAt(i);
                 }
@@ -112,7 +108,7 @@ namespace Othello
                     Grid.SetRow(ellipse, row);
                     Grid.SetColumn(ellipse, col);
 
-                    switch (table.fields[row, col].GetColor())
+                    switch (table.Fields[row, col].GetColor())
                     {
                         case Model.Color.Empty:
                             ellipse.Fill = Brushes.Transparent;
@@ -127,7 +123,7 @@ namespace Othello
                     }
 
                     // Check for valid moves and set the ellipse properties accordingly.
-                    if (table.ValidMoves.Any(x => x.GetX() == row && x.GetY() == col))
+                    if (table.ValidMoves.Any(x => x.X == row && x.Y == col))
                     {
                         ellipse.Fill = Brushes.Transparent;
                         ellipse.Stroke = Brushes.Black;
@@ -139,9 +135,9 @@ namespace Othello
                 }
             }
             // Update scoreboard text.
-            Score1 = table.player1.GetScore();
-            Score2 = table.player2.GetScore();
-            tbTurnIndicator.Text = table.activePlayer.name + "'s turn";
+            Score1 = table.Player1.Score;
+            Score2 = table.Player2.Score;
+            tbTurnIndicator.Text = table.ActivePlayer.Name + "'s turn";
         }
 
         /** <summary>
@@ -154,16 +150,16 @@ namespace Othello
             int row = Grid.GetRow(ellipse);
             int col = Grid.GetColumn(ellipse);
             bool isValid = false;
-            if (table.ValidMoves.Any(x => x.GetX() == row && x.GetY() == col))
+            if (table.ValidMoves.Any(x => x.X == row && x.Y == col))
             {
                 isValid = true;
             }
-            if (isValid && table.activePlayer.GetPlayerType() == Model.PlayerType.Human)
+            if (isValid && table.ActivePlayer.GetPlayerType() == Model.PlayerType.Human)
             {
                 Model.Position pos = new Model.Position(row, col);
                 table.MakeMove(pos);
                 Draw();
-                if (table.activePlayer.GetPlayerType() == Model.PlayerType.AI)
+                if (table.ActivePlayer.GetPlayerType() == Model.PlayerType.AI)
                 {
                     AiMove();
                 }
@@ -239,7 +235,7 @@ namespace Othello
                     table.PassMove();
                     Draw();
                 }
-                else if (!_pvp && table.activePlayer.playerType == Model.PlayerType.Human)
+                else if (!_pvp && table.ActivePlayer.playerType == Model.PlayerType.Human)
                 {
                     table.PassMove();
                     AiMove();
@@ -251,7 +247,10 @@ namespace Othello
             {
                 EndGame();
             }
-            else return;
+            else
+            {
+                return;
+            }
         }
 
         /** <summary>
@@ -272,8 +271,11 @@ namespace Othello
                 _winner = _player2;
             }
             Utility.SaveScores(_player1, _player2, _score1, _score2, _winner, elapsedTime.Text);
-            MessageBoxResult result = MessageBox.Show(_winner + " has won.\nWould you like to start a new game?\n(Pressing no will take you to the high scores)",
-                "Game over!", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            MessageBoxResult result = MessageBox.Show(
+                _winner + " has won.\nWould you like to start a new game?\n(Pressing no will take you to the high scores)",
+                "Game over!",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Information);
             if (result == MessageBoxResult.Yes)
             {
                 PlayerSelectWindow psWindow = new PlayerSelectWindow();

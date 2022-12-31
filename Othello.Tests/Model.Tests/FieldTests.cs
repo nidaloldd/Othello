@@ -1,8 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Othello.Model;
-
-namespace Othello.Tests.Model.Tests
+﻿namespace Othello.Tests.Model.Tests
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Othello.Model;
+
     [TestClass]
     public class FieldTests
     {

@@ -1,27 +1,23 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Othello.Model;
-using System.Linq;
-using System.Diagnostics;
-using Microsoft.VisualStudio.TestPlatform.Utilities;
-using System.Collections.Immutable;
-
-namespace Othello.Tests.Model.Tests
+﻿namespace Othello.Tests.Model.Tests
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Othello.Model;
+
     [TestClass]
     public class TableTests
     {
         [TestMethod]
         public void TestIsPositionValid()
         {
-            //Arrange
+            // Arrange
             Player player1 = new Player(PlayerType.Human, "player1");
             Player player2 = new Player(PlayerType.AI, "player2");
             var table = new Table(player1, player2);
 
-            //Act
-            /**/
+            // Act
+            // ---
 
-            //Assert
+            // Assert
             Assert.IsTrue(table.IsPositionValid(new Position(0, 0)));
             Assert.IsTrue(table.IsPositionValid(new Position(7, 7)));
             Assert.IsFalse(table.IsPositionValid(new Position(-1, 0)));
@@ -31,91 +27,88 @@ namespace Othello.Tests.Model.Tests
         [TestMethod]
         public void TestGetValidMoves()
         {
-            //Arrange
+            // Arrange
             Player player1 = new Player(PlayerType.Human, "player1");
             Player player2 = new Player(PlayerType.AI, "player2");
             var table = new Table(player1, player2);
 
-            //Act
-            table.fields[3, 3].SetColor(player1.GetColor()); 
-            table.fields[4, 3].SetColor(player2.GetColor());
-            table.fields[2, 4].SetColor(player2.GetColor());
-            table.fields[4, 2].SetColor(player2.GetColor());
+            // Act
+            table.Fields[3, 3].SetColor(player1.GetColor());
+            table.Fields[4, 3].SetColor(player2.GetColor());
+            table.Fields[2, 4].SetColor(player2.GetColor());
+            table.Fields[4, 2].SetColor(player2.GetColor());
 
-            //Assert
+            // Assert
             table.GetValidMoves(player1);
-            Assert.IsTrue(table.ValidMoves.Any(x => x.GetX() == 5 && x.GetY() == 5));
-            Assert.IsFalse(table.ValidMoves.Any(x => x.GetX() == 4 && x.GetY() == 3));
-            Assert.IsFalse(table.ValidMoves.Any(x => x.GetX() == 3 && x.GetY() == 4));
+            Assert.IsTrue(table.ValidMoves.Any(x => x.X == 5 && x.Y == 5));
+            Assert.IsFalse(table.ValidMoves.Any(x => x.X == 4 && x.Y == 3));
+            Assert.IsFalse(table.ValidMoves.Any(x => x.X == 3 && x.Y == 4));
 
-            //Assert
+            // Assert
             table.GetValidMoves(player2);
-            Assert.IsTrue(table.ValidMoves.Any(x => x.GetX() == 2 && x.GetY() == 2 ));
-            Assert.IsFalse(table.ValidMoves.Any(x => x.GetX() == 3 && x.GetY() == 3 ));
-            Assert.IsFalse(table.ValidMoves.Any(x => x.GetX() == 5 && x.GetY() == 5 ));
+            Assert.IsTrue(table.ValidMoves.Any(x => x.X == 2 && x.Y == 2));
+            Assert.IsFalse(table.ValidMoves.Any(x => x.X == 3 && x.Y == 3));
+            Assert.IsFalse(table.ValidMoves.Any(x => x.X == 5 && x.Y == 5));
         }
 
         [TestMethod]
         public void TestMakeMove()
         {
-            //Arrange
+            // Arrange
             Player player1 = new Player(PlayerType.Human, "player1");
             Player player2 = new Player(PlayerType.AI, "player2");
             var table = new Table(player1, player2);
 
-            //Act
-            table.fields[3, 3].SetColor(player1.GetColor());
-            table.fields[4, 4].SetColor(player1.GetColor());
-            table.fields[2, 4].SetColor(player2.GetColor());
-            table.fields[4, 2].SetColor(player2.GetColor());
+            // Act
+            table.Fields[3, 3].SetColor(player1.GetColor());
+            table.Fields[4, 4].SetColor(player1.GetColor());
+            table.Fields[2, 4].SetColor(player2.GetColor());
+            table.Fields[4, 2].SetColor(player2.GetColor());
 
             table.MakeMove(new Position(3, 2));
 
-            //Assert
+            // Assert
             Assert.AreEqual(player1.GetColor(), table.GetFieldOn(new Position(3, 4)).GetColor());
             Assert.AreNotEqual(player2.GetColor(), table.GetFieldOn(new Position(3, 3)).GetColor());
             Assert.AreEqual(player1.GetColor(), table.GetFieldOn(new Position(4, 4)).GetColor());
 
-            Assert.AreEqual(0, player1.GetScore());
-
+            Assert.AreEqual(0, player1.Score);
         }
 
         [TestMethod]
         public void TestIsGameOver_False()
         {
-            //Arrange
+            // Arrange
             Player player1 = new Player(PlayerType.Human, "player1");
             Player player2 = new Player(PlayerType.AI, "player2");
             var table = new Table(player1, player2);
- 
-            //Act
-            table.fields[3, 3].SetColor(player1.GetColor());
-            table.fields[4, 4].SetColor(player1.GetColor());
-            table.fields[2, 4].SetColor(player2.GetColor());
-            table.fields[4, 2].SetColor(player2.GetColor());
 
-            //Assert
+            // Act
+            table.Fields[3, 3].SetColor(player1.GetColor());
+            table.Fields[4, 4].SetColor(player1.GetColor());
+            table.Fields[2, 4].SetColor(player2.GetColor());
+            table.Fields[4, 2].SetColor(player2.GetColor());
+
+            // Assert
             Assert.IsFalse(table.IsGameOver());
-
         }
 
         [TestMethod]
         public void TestisGameOver_true()
         {
-            //Arrange
+            // Arrange
             Player player1 = new Player(PlayerType.Human, "player1");
             Player player2 = new Player(PlayerType.AI, "player2");
             var table = new Table(player1, player2);
 
-            //Act
-            foreach (var field in table.fields)
+            // Act
+            foreach (var field in table.Fields)
             {
                 field.SetColor(player1.GetColor());
             }
 
-            //Assert
+            // Assert
             Assert.IsTrue(table.IsGameOver());
         }
-
     }
 }

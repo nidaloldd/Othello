@@ -9,8 +9,8 @@ namespace Othello
         {
             InitializeComponent();
 
-            // Order data descending based on Score1 first, then by Score2.
-            var sortedData = Utility.ReadScores().OrderByDescending(d => d.Score1).ThenByDescending(d => d.Score2).ToList();
+            // Read data from the JSON, then put it in a descending order based on scores.
+            var sortedData = Utility.ReadScores().OrderByDescending(d => System.Math.Max(d.Score1, d.Score2)).ToList();
 
             highScores.ItemsSource = sortedData;
         }
@@ -21,7 +21,7 @@ namespace Othello
             mainWindow.Show();
             Close();
         }
-        
+
         private void ClearScores_Click(object sender, RoutedEventArgs e)
         {
             // Ask the user if they want to clear all high scores.

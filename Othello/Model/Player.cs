@@ -6,25 +6,27 @@ namespace Othello.Model
 {
     public class Player
     {
-        public PlayerType playerType;
-        public string name;
-        public int score;
+        private string _name;
+        private int _score;
         public Color color;
-        public int GetScore()
+        public PlayerType playerType;
+        public int Score
         {
-            return score;
+            get { return _score; }
+            set { _score = value; }
         }
         public void SetScore(int score)
         {
-            this.score = score;
+            _score = score;
         }
         public void AddScore(int score)
         {
-            this.score += score;
+            _score += score;
         }
-        public string GetName()
+        public string Name
         {
-            return name;
+            get { return _name; }
+            set { _name = value; }
         }
 
         public PlayerType GetPlayerType()
@@ -56,7 +58,7 @@ namespace Othello.Model
         public Player(PlayerType playerType, string name)
         {
             this.playerType = playerType;
-            this.name = name;
+            _name = name;
         }
     }
 
