@@ -107,5 +107,7 @@ namespace Othello.Model
         {
             return !(pos1.GetX() == pos2.GetX() && pos1.GetY() == pos2.GetY());
         }
+
+
     }
 }

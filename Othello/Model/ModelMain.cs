@@ -17,6 +17,8 @@ namespace Othello.Model
 
             Table table = new Table(player1, player2);
 
+
+
             // For AI vs AI
             // table.MakeMove();
 
@@ -33,6 +35,7 @@ namespace Othello.Model
             */
 
             // For Player vs Player
+            /*
             Trace.WriteLine("-- 1 --");
             table.PrintTable();
             table.MakeMove(new Position(3, 2));
@@ -125,9 +128,11 @@ namespace Othello.Model
             table.MakeMove(new Position(2, 7));
             table.MakeMove(new Position(4, 7));
             Trace.WriteLine("-- 31 --");
+            
 
             Trace.WriteLine("Player1 Score: " + player1.GetScore());
             Trace.WriteLine("Player2 Score: " + player2.GetScore());
+            */
         }
     }
 }

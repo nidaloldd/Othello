@@ -184,13 +184,39 @@ namespace Othello.Model
 
             return positions;
         }
-        private int GetAngleBonus(Position pos)
+
+        private int GetAngleBonus(List<Position> directions) {
+            int Bonus = 0;
+            Trace.WriteLine("UP " + new Position().Up().Write());
+            foreach (Position p in directions) {
+                Trace.WriteLine(p.Write());
+            }
+            // Bonus for Vertical Angle
+            if (directions.Any(x => x == new Position().Up()) || directions.Any(x => x == new Position().Down())){
+                Bonus++;
+            }
+            // Bonus for Horizontal Angle
+            if (directions.Any(x => x == new Position().Left()) || directions.Any(x => x == new Position().Right()))
+            {
+                
+                Bonus++;
+            }
+            // Bonus for Diagonal Angle
+            if (directions.Any(x => x == new Position().DiagonalUpLeft()) || directions.Any(x => x == new Position().DiagonalUpRight()) ||
+                directions.Any(x => x == new Position().DiagonalDownLeft()) || directions.Any(x => x == new Position().DiagonalDownRight()))
+            {
+                Bonus++;
+            }
+
+            return Bonus;
+        }
+        private List<Position> GetAngleDirections(Position pos)
         {
+            List<Position> angleDirections = new List<Position>();
             Position startPos = new Position(pos.GetX(), pos.GetY());
 
             // set the Empty Color to the activPlayers color
             GetFieldOn(startPos).SetColor(activePlayer.GetColor());
-            int bonus = 0;
             foreach (Position dir in Position.Directions)
             {
                 // set the position to the starting values
@@ -217,7 +243,7 @@ namespace Othello.Model
                     {
                         if (count > 0)
                         {
-                            bonus++;
+                            angleDirections.Add(dir);
                         }
 
                         break;
@@ -230,7 +256,7 @@ namespace Othello.Model
             }
             // set the Empty Color to the activPlayers color
             GetFieldOn(startPos).SetColor(Color.Empty);
-            return bonus;
+            return angleDirections;
         }
 
         public Player GetStartingPlayer()
@@ -310,7 +336,7 @@ namespace Othello.Model
             // Variable for counting reverses
             int countRev = 0;
 
-            int bonus = GetAngleBonus(position);
+            int bonus = GetAngleBonus(GetAngleDirections(position));
 
             // Reverse the Colors
             foreach (Position p in GetReversedPositions(position))
@@ -454,16 +480,16 @@ namespace Othello.Model
             {
                 for (int j = 0; j < Width; j++)
                 {
-                    switch (fields[j, i].GetColor())
+                    switch (fields[i, j].GetColor())
                     {
                         case Color.Black:
-                            symbols[j, i] = " B ";
+                            symbols[i, j] = " B ";
                             break;
                         case Color.White:
-                            symbols[j, i] = " W ";
+                            symbols[i, j] = " W ";
                             break;
                         case Color.Empty:
-                            symbols[j, i] = " O ";
+                            symbols[i, j] = " O ";
                             break;
                     }
                 }
@@ -476,7 +502,7 @@ namespace Othello.Model
             {
                 for (int j = 0; j < Width; j++)
                 {
-                    Trace.Write(symbols[j, i]);
+                    Trace.Write(symbols[i, j]);
                 }
                 Trace.WriteLine(string.Empty);
             }
