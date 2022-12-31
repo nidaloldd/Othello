@@ -110,5 +110,29 @@
             // Assert
             Assert.IsTrue(table.IsGameOver());
         }
+        
+        
+        [TestMethod]
+        public void TestMakeMoveMethod()
+        {
+            // Arrange
+            Player player1 = new Player(PlayerType.Human, "player1");
+            Player player2 = new Player(PlayerType.AI, "player2");
+            var table = new Table(player1, player2);
+            Position startPos = new Position(3, 3);
+            Position endPos = new Position(4, 3);
+            table.fields[3, 3] = new Field(startPos, Color.Black);
+            table.fields[4, 3] = new Field(endPos, Color.Empty);
+            table.activePlayer = player1;
+            table.ValidMoves.Add(endPos);
+
+            // Act
+            table.MakeMove(endPos);
+
+            // Assert
+            Assert.AreEqual(Color.Black, table.GetFieldOn(endPos).GetColor());
+            Assert.AreEqual(Color.Black, table.GetFieldOn(startPos).GetColor());
+            Assert.AreEqual(Color.White, table.activePlayer.GetColor());
+        }
     }
 }
