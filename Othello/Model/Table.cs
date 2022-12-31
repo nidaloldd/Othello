@@ -8,13 +8,14 @@ namespace Othello.Model
 {
     public class Table
     {
-        private Player player1, player2;
-        private Player activePlayer;
+        public Player player1, player2;
+        public Player activePlayer;
+
         private const int Width = 8;
         private const int Height = 8;
         private const int PointValue = 10;
 
-        private readonly Field[,] fields = new Field[8, 8];
+        public readonly Field[,] fields = new Field[8, 8];
         public List<Position> ValidMoves = new List<Position>();
 
         /*
@@ -232,10 +233,11 @@ namespace Othello.Model
             return bonus;
         }
 
-        private Player GetStartingPlayer()
+        public Player GetStartingPlayer()
         {
             Random rnd = new Random();
-            if (rnd.Next(1) == 0)
+            double choice = rnd.NextDouble();
+            if (choice <= 0.5)
             {
                 return player1;
             }
@@ -326,14 +328,6 @@ namespace Othello.Model
             GetValidMoves(activePlayer);
 
             PrintTable();
-            if (activePlayer.GetPlayerType() == PlayerType.AI)
-            {
-                if (IsGameOver())
-                {
-                    return;
-                }
-                MakeMove();
-            }
         }
         public void MakeMove()
         {
@@ -370,14 +364,14 @@ namespace Othello.Model
             GetValidMoves(activePlayer);
 
             PrintTable();
-            if (activePlayer.GetPlayerType() == PlayerType.AI)
+            /*if (activePlayer.GetPlayerType() == PlayerType.AI)
             {
                 if (IsGameOver())
                 {
                     return;
                 }
                 MakeMove();
-            }
+            }*/
         }
 
         private void CalculateScore(Player player, int n, int bonusForAngle)
@@ -399,7 +393,7 @@ namespace Othello.Model
             player.AddScore(score);
         }
 
-        private bool IsGameOver()
+        public bool IsGameOver()
         {
             // Game Over
             if (ValidMoves.Count() == 0)
@@ -410,7 +404,7 @@ namespace Othello.Model
             return false;
         }
 
-        private Position GetBestValidMove()
+        public Position GetBestValidMove()
         {
             Dictionary<Position, int> moves = new Dictionary<Position, int>();
 

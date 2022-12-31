@@ -6,10 +6,10 @@ namespace Othello.Model
 {
     public class Player
     {
-        private PlayerType playerType;
-        private string name;
-        private int score;
-        private Color color;
+        public PlayerType playerType;
+        public string name;
+        public int score;
+        public Color color;
         public int GetScore()
         {
             return score;

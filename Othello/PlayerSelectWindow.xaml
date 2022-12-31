@@ -138,8 +138,12 @@
                             Foreground="White"
                             Style="{StaticResource MyButton}" />
                     </Border>
+                </StackPanel>
+
+                <!--  back button  -->
+                <StackPanel Grid.Row="1" HorizontalAlignment="Center">
                     <Border
-                        Margin="0,40,0,0"
+
                         Background="#303030"
                         BorderBrush="Black"
                         BorderThickness="1"
@@ -158,31 +162,7 @@
                             FontSize="18"
                             Foreground="White"
                             Style="{StaticResource MyButton}" />
-                    </Border>
-                </StackPanel>
-
-                <!--  quit button  -->
-                <StackPanel Grid.Row="1" HorizontalAlignment="Center">
-                    <Border
-                        Background="#303030"
-                        BorderBrush="Black"
-                        BorderThickness="1"
-                        CornerRadius="10">
-                        <Button
-                            x:Name="quitGame"
-                            Width="150"
-                            Height="40"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Background="Transparent"
-                            BorderBrush="{x:Null}"
-                            Click="QuitGame_Click"
-                            Content="Quit"
-                            FontFamily="Arial Black"
-                            FontSize="20"
-                            Foreground="White"
-                            Style="{StaticResource MyButton}" />
-                    </Border>
+                        </Border>
                 </StackPanel>
             </Grid>
         </StackPanel>

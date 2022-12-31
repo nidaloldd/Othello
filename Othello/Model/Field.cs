@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Othello.Model
+﻿namespace Othello.Model
 {
     public class Field
     {
         private Color color;
-        private Position position;
+        public Position position;
 
         public Field(Position position, Color color)
         {

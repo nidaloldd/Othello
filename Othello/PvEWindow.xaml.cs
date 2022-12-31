@@ -32,10 +32,5 @@ namespace Othello
             psWindow.Show();
             Close();
         }
-
-        private void QuitGame_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
     }
 }
